@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ScrollWorld from '../components/ScrollWorld.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import TreatmentCard from '../components/TreatmentCard.astro';
+import PriceList from '../components/PriceList.astro';
 import { getCollection } from 'astro:content';
 import { categories } from '../data/categories';
 import { site } from '../data/site';
@@ -84,6 +85,14 @@ const standards = [
             </a>
           ))}
         </div>
+      </div>
+    </section>
+
+    <section class="prices" id="prices">
+      <div class="container">
+        <SectionHeading title="Every treatment, every price" subtitle="The Price List" />
+        <PriceList />
+        <p class="prices__note text-muted">{site.gstNote}</p>
       </div>
     </section>
 
@@ -180,6 +189,12 @@ const standards = [
 </Layout>
 
 <style>
+  .prices__note {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 2.5rem;
+  }
+
   /* The scroll engine's sky/stage/copy layers are position:fixed at z-index 0/10/20
      for the life of the page. Post-flight content must therefore sit above them on
      an opaque ground, or the flight shows through. */

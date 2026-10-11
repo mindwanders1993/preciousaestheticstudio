@@ -4,6 +4,7 @@ import TreatmentCard from '../../components/TreatmentCard.astro';
 import { getCollection } from 'astro:content';
 import { categories } from '../../data/categories';
 import { site } from '../../data/site';
+import { faqSchema } from '../../lib/structured-data';
 
 const allTreatments = await getCollection('treatments');
 const allFaqs = await getCollection('faqs');
@@ -31,10 +32,14 @@ const generalFaqs = allFaqs
   .sort((a, b) => a.data.order - b.data.order);
 
 const medicalCount = allTreatments.filter(t => t.data.medical).length;
+
+// Exactly the questions this page shows, in the order it shows them.
+const jsonLd = [faqSchema([...menu.flatMap(group => group.faqs), ...generalFaqs])];
 ---
 
 <Layout
   title={`Treatments | ${site.legalName}`}
+  jsonLd={jsonLd}
   description="The full menu — permanent makeup, microneedling and Korean glass skin, tone and pigment treatments, laser hair removal and mole removal."
 >
   <header class="page-header">

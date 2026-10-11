@@ -1,8 +1,9 @@
 # Precious Aesthetic Studio — website
 
-**Status: phase 3 — the owner's menu and prices are in; the rest of the content waits on her.** The site shows
-Roshni Verma's twelve treatments and her prices. Pictures are stock, several pages are short on purpose, and
-nothing here is deployed.
+**Status: the owner's menu is in and the site has moved past a plain clone.** It shows Roshni Verma's twelve
+treatments and prices, lists every price on the homepage, keeps a booking button within reach on a phone, and
+describes itself to search engines and AI agents (`/llms.txt`, `/treatments.json`, structured data). Pictures
+are stock, several pages are short on purpose, and nothing here is deployed.
 
 This project is a full clone of the Aura Blush site (`~/Desktop/Projects/aurablush`), rebranded and
 re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudio.com`.
@@ -53,8 +54,8 @@ setting).
 
 ## Next step
 
-Show Roshni a preview and get her answers to `docs/04-FOR-ROSHNI.md`. Before that: pictures, the logo and the
-header's fit on a phone, search and agent readiness, and the Vercel preview — one spec each.
+Pictures for the four new treatments, then a Vercel preview to show Roshni and her answers to
+`docs/04-FOR-ROSHNI.md`.
 
 ```bash
 npm ci

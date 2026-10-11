@@ -131,7 +131,8 @@ These are in the source's `AGENTS.md` and stay true here:
 
 - A shared template or a monorepo for both studios. Two copies are cheaper than an abstraction; a third
   studio is when to look again.
-- New features. The clone does what the source does.
+- ~~New features. The clone does what the source does.~~ Lifted by the owner on 11 Oct 2026: the site may be
+  improved beyond the source. Each improvement has its own spec in `docs/specs/`.
 - Rendering the flight's clips (question 10).
 
 ## 10. Where the source's own documents are out of date
