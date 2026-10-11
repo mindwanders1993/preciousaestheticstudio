@@ -32,10 +32,17 @@ Answers go at the bottom with their date.
 7. **About you.** Your training and certificates, years of experience, and the short story on the "Artist" and
    "About" pages — these were written for the earlier draft.
 
+## Please check the Hindi
+
+The homepage shows four short promises in Hindi under their English: *पहली सलाह मुफ़्त है · कीमत पहले बताई जाती है ·
+हर बार नई सुई · लेज़र से पहले पैच टेस्ट*. Are they how you would say it? Change any of them.
+
 ## Still needed
 
 8. Studio address and a landmark, opening hours, languages you speak with clients.
-9. Phone, WhatsApp, email, and the Instagram account the studio will use.
+9. **Your WhatsApp number — this is the most important one.** The moment it is in the site, every "Message"
+   button becomes a WhatsApp chat with the message already written. Also: phone, email, and the Instagram
+   account the studio will use.
 10. The Telegram chat that should receive booking requests.
 
 ## Later, when you have them

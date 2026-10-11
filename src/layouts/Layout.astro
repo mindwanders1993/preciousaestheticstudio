@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { categories } from '../data/categories';
 import { site } from '../data/site';
 import { absolute, salonSchema } from '../lib/structured-data';
+import { BOOK_LABEL, messageLink } from '../lib/contact';
 
 interface Props {
   title?: string;
@@ -30,11 +31,13 @@ const {
   bookHref = '/contact',
 } = Astro.props;
 
+// Four things a first-time visitor wants, in the order she wants them. "Reviews" returns to this list once
+// there are real reviews to show (docs/specs/P9-first-customer.md).
 const nav = [
-  { href: '/treatments', label: 'Treatments' },
-  { href: '/artist',     label: 'The Artist' },
-  { href: '/about',      label: 'About' },
-  { href: '/reviews',    label: 'Reviews' },
+  { href: '/treatments',  label: 'Treatments' },
+  { href: '/prices',      label: 'Prices' },
+  { href: '/first-visit', label: 'Your first visit' },
+  { href: '/artist',      label: 'About Roshni' },
 ];
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -51,9 +54,8 @@ const structuredData = [salonSchema(Astro.site), ...jsonLd];
 // The phone booking bar: everywhere except the homepage flight (which has its own button) and the booking
 // page itself.
 const showBookBar = !immersive && !path.startsWith('/contact');
-const messageLink = site.whatsapp.display
-  ? { label: 'WhatsApp', href: site.whatsapp.href }
-  : { label: 'Instagram', href: site.social.instagram.href };
+const message = messageLink();
+const messageShort = message.channel === 'whatsapp' ? 'WhatsApp' : 'Instagram';
 
 /**
  * Category colours are emitted here, once, from src/data/categories.ts so the
@@ -92,6 +94,10 @@ const categoryTokens = [
     <meta name="twitter:image" content={socialImage} />
     <meta name="theme-color" content="#fffcfb" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1c1112" media="(prefers-color-scheme: dark)" />
+
+    <!-- Vercel Web Analytics: page views and which buttons get tapped, no cookies. Records nothing until
+         "Enable Web Analytics" is switched on in the Vercel project; until then the script is a 404. -->
+    <script is:inline defer src="/_vercel/insights/script.js"></script>
 
     <!-- For AI agents: a plain-text map of the site, and the menu as data -->
     <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
@@ -143,7 +149,7 @@ const categoryTokens = [
           <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
             <span class="theme-toggle__icon" aria-hidden="true"></span>
           </button>
-          <a href={bookHref} class="btn-book" aria-label="Book Appointment">Book<span class="btn-book__rest"> Appointment</span></a>
+          <a href={bookHref} class="btn-book" aria-label={BOOK_LABEL}>Book<span class="btn-book__rest"> a free consultation</span></a>
         </div>
       </div>
     </header>
@@ -171,16 +177,17 @@ const categoryTokens = [
                 </a>
               </li>
             ))}
-            <li><a href="/treatments">Full menu &amp; prices</a></li>
+            <li><a href="/prices">Every price</a></li>
           </ul>
         </div>
         <div class="footer-links">
           <h4>Explore</h4>
           <ul>
-            <li><a href="/artist">The Artist</a></li>
-            <li><a href="/about">Our Story</a></li>
-            <li><a href="/reviews">Reviews</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/first-visit">Your first visit</a></li>
+            <li><a href="/artist">About Roshni</a></li>
+            <li><a href="/about">The studio</a></li>
+            <li><a href="/studio">A look around</a></li>
+            <li><a href="/contact">Book a free consultation</a></li>
           </ul>
         </div>
         <div class="footer-contact">
@@ -220,8 +227,8 @@ const categoryTokens = [
 
     {showBookBar && (
       <div class="book-bar">
-        <a href={bookHref} class="book-bar__primary">Book a consultation</a>
-        <a href={messageLink.href} class="book-bar__secondary" target="_blank" rel="noopener">{messageLink.label}</a>
+        <a href={bookHref} class="book-bar__primary">{BOOK_LABEL}</a>
+        <a href={message.href} class="book-bar__secondary" target="_blank" rel="noopener" aria-label={message.label}>{messageShort}</a>
       </div>
     )}
 

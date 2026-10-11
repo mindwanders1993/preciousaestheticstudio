@@ -6,6 +6,7 @@ import TreatmentArt from '../../components/TreatmentArt.astro';
 import { getCategory } from '../../data/categories';
 import { site } from '../../data/site';
 import { breadcrumbSchema, treatmentSchema } from '../../lib/structured-data';
+import { messageLink } from '../../lib/contact';
 
 export async function getStaticPaths() {
   const treatments = await getCollection('treatments');
@@ -36,6 +37,7 @@ const others = [...sameFamily, ...elsewhere].slice(0, 3);
 
 // The booking form opens with this treatment already chosen.
 const bookHref = `/contact?treatment=${treatment.id}`;
+const message = messageLink(d.title);
 
 const jsonLd = [
   treatmentSchema(treatment, cat.label, Astro.site),
@@ -96,7 +98,7 @@ const jsonLd = [
           </div>
         </dl>
 
-        <a href={bookHref} class="btn-primary">Book this treatment</a>
+        <a href={bookHref} class="btn-primary">Book a free consultation</a>
       </div>
 
       <div class="hero-image">
@@ -122,10 +124,17 @@ const jsonLd = [
   <section class="section">
     <div class="container content-grid" data-cat={cat.id}>
       <div class="main-content">
-        <SectionHeading title="About the procedure" alignment="left" />
-        <div class="prose">
-          <Content />
-        </div>
+        <!-- The hero already answers price, time, sessions, downtime and results. The long explanation is
+             here for the reader who wants it, folded so it does not stand between her and the button. -->
+        <details class="read-more">
+          <summary>
+            <SectionHeading title="About the procedure" alignment="left" />
+            <span class="read-more__hint">Read the full explanation</span>
+          </summary>
+          <div class="prose">
+            <Content />
+          </div>
+        </details>
 
         {d.benefits.length > 0 && (
           <div class="benefits-box">
@@ -187,8 +196,9 @@ const jsonLd = [
 
         <div class="care-box care-box--cta">
           <h2>Questions first?</h2>
-          <p class="care-note">Consultations are free, and there's no obligation to book on the day.</p>
-          <a href={bookHref} class="btn-outline">Book a consultation</a>
+          <p class="care-note">The consultation is free, and there's no obligation to book on the day.</p>
+          <a href={bookHref} class="btn-outline">Book a free consultation</a>
+          <a href={message.href} class="care-box__alt" target="_blank" rel="noopener">{message.label} →</a>
         </div>
       </aside>
     </div>
@@ -407,6 +417,30 @@ const jsonLd = [
       grid-template-columns: 1.8fr 1fr;
       gap: 4.5rem;
     }
+  }
+
+  .read-more summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .read-more summary::-webkit-details-marker { display: none; }
+
+  .read-more__hint {
+    display: inline-block;
+    margin: -1rem 0 1.5rem;
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    border-bottom: 1px dashed currentColor;
+  }
+
+  .read-more[open] .read-more__hint { display: none; }
+
+  .care-box__alt {
+    display: block;
+    margin-top: 0.9rem;
+    font-size: 0.9rem;
+    color: var(--color-accent);
   }
 
   .prose {

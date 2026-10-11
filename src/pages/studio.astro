@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScrollWorld from '../components/ScrollWorld.astro';
+import { site } from '../data/site';
+import { BOOK_LABEL } from '../lib/contact';
+
+/**
+ * The camera flight's own page. It used to open the homepage, which put a nine-screen tour between a
+ * visitor and the prices; here it is a "look around" she chooses (docs/specs/P9-first-customer.md).
+ * The engine still needs to be the first element on the page it lives on (site rule 5).
+ */
+---
+
+<Layout
+  title={`A look around | ${site.legalName}`}
+  description={`A walk through the studio — the consultation room, the sterile prep, the brow and lip suites. ${site.legalName}, ${site.city}.`}
+  immersive
+>
+  <h1 class="sr-only">A look around {site.legalName}</h1>
+
+  <ScrollWorld />
+
+  <div class="after-flight">
+    <section class="closing">
+      <div class="container closing-inner">
+        <p class="closing-note text-muted">
+          The rooms in this walkthrough are illustrations of how the studio works, not photographs of it.
+        </p>
+        <h2>Seen enough? Say hello.</h2>
+        <div class="closing-actions">
+          <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
+          <a href="/prices" class="btn-outline">See every price</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Everything after the flight scrolls up over the engine's fixed stage, so it needs an opaque ground
+     and a z-index above it. */
+  .after-flight {
+    position: relative;
+    z-index: 30;
+    background-color: var(--color-bg);
+  }
+
+  .closing {
+    padding: clamp(3rem, 8vw, 6rem) 0;
+    text-align: center;
+  }
+
+  .closing-inner { max-width: 40rem; }
+
+  .closing-note {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .closing h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+</style>

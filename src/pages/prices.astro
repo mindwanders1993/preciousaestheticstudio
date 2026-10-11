@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PriceList from '../components/PriceList.astro';
+import { site } from '../data/site';
+import { BOOK_LABEL, messageLink } from '../lib/contact';
+
+// The price list on its own page, so "see our prices" is one link to share on WhatsApp or Instagram.
+const message = messageLink();
+---
+
+<Layout
+  title={`Prices | ${site.legalName}`}
+  description={`Every treatment at ${site.legalName} with its price — permanent makeup, skin, tone and pigment, laser and mole removal. Prices are confirmed at the free consultation.`}
+>
+  <header class="page-header">
+    <span class="page-header__eyebrow">The price list</span>
+    <h1>Every treatment, every price</h1>
+    <div class="page-header__rule"></div>
+    <p class="page-header__lede">
+      No surprises at the counter. The price you see here is the price you hear at the consultation,
+      and nothing is paid until you decide to go ahead.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <PriceList />
+      <p class="note text-muted">{site.gstNote}</p>
+      <div class="actions">
+        <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
+        <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .note {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 2.5rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+</style>

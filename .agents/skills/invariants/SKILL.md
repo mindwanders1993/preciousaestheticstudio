@@ -43,8 +43,9 @@ user-invocable: false
 
 ## 5. The homepage flight
 - `public/world/scrub-engine.js` is vendored and is not edited or ported into a component.
-- `<ScrollWorld />` is the first element on the homepage; whatever follows sits above it
-  (`position: relative; z-index: 30`) on an opaque background.
+- `<ScrollWorld />` lives on `/studio` (since 12 Oct 2026; it opened the homepage before) and is the first
+  element on that page; whatever follows sits above it (`position: relative; z-index: 30`) on an opaque
+  background. The homepage opens on the offer, the prices and the trust strip instead.
 - The legs' ids and their order are fixed: `world/` is keyed to them. Scene copy may change; the `brows` and
   `lips` legs go on describing brow and lip suites.
 

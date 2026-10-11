@@ -1,19 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ScrollWorld from '../components/ScrollWorld.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import TreatmentCard from '../components/TreatmentCard.astro';
 import PriceList from '../components/PriceList.astro';
 import { getCollection } from 'astro:content';
 import { categories } from '../data/categories';
 import { site } from '../data/site';
+import { BOOK_LABEL, messageLink } from '../lib/contact';
 
+/**
+ * The homepage answers a first-time visitor's three questions in the order she asks them — what do you do
+ * and what does it cost, is it safe, who are you — and puts the one action the site exists for, a first
+ * message, on the first screen (docs/specs/P9-first-customer.md). The camera flight that used to open this
+ * page now has its own page, /studio.
+ */
 const allTreatments = await getCollection('treatments');
 
-/* Six marquee treatments, hand-picked in the content files rather than sliced
-   off the top of the collection — otherwise adding a treatment silently
-   reshuffles the homepage. Sorted by family first: `order` is scoped to a
-   category, so sorting on it alone interleaves the four families at random. */
 const familyRank = new Map(categories.map((c, i) => [c.id, i]));
 const featuredTreatments = allTreatments
   .filter(t => t.data.featured)
@@ -21,387 +23,453 @@ const featuredTreatments = allTreatments
     (familyRank.get(a.data.category)! - familyRank.get(b.data.category)!) ||
     (a.data.order - b.data.order));
 
-/* The menu rail. Each family shows its size and its entry price so the
-   homepage answers "what do you do and what does it cost" without a click. */
-const menu = categories.map(category => {
-  const inFamily = allTreatments.filter(t => t.data.category === category.id);
-  // `price` is the single-session headline figure ("₹3,500", "From ₹1,200");
-  // course pricing lives in `priceNote` and is deliberately not summed here.
-  const cheapest = inFamily
-    .map(t => Number(t.data.price.match(/₹\s*([\d,]+)/)?.[1].replace(/,/g, '')))
-    .filter(n => Number.isFinite(n) && n > 0)
-    .sort((a, b) => a - b)[0];
-  return { category, count: inFamily.length, from: cheapest };
-});
+// Three prices on the first screen, taken from the featured treatments so they are never typed here.
+const heroPrices = featuredTreatments.slice(0, 3).map(t => ({
+  title: t.data.title.replace(/\s*\(.*\)$/, ''),
+  price: t.data.price,
+  href: `/treatments/${t.id}`,
+}));
 
-const allReviews = (await getCollection('reviews'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const featuredReview = allReviews[0];
+const message = messageLink();
+
+// What a nervous first-timer needs to hear before she messages. Each line is something the site already
+// commits to elsewhere; the Hindi is the same promise in the language most clients speak first
+// (docs/04-FOR-ROSHNI.md asks her to check the wording).
+const trust = [
+  { en: 'The first consultation is free', hi: 'पहली सलाह मुफ़्त है' },
+  { en: 'Every price is on the site, before you book', hi: 'कीमत पहले बताई जाती है' },
+  { en: 'A new needle, blade and tip for every client', hi: 'हर बार नई सुई' },
+  { en: 'Laser only after a patch test', hi: 'लेज़र से पहले पैच टेस्ट' },
+];
+
+const steps = [
+  { title: 'Message us', body: 'Say what you are thinking about. We reply within 24 hours with an honest answer and a time.' },
+  { title: 'A free 20-minute consultation', body: 'We look at your skin, talk through what suits you and what does not, and confirm the price. No obligation.' },
+  { title: 'The treatment', body: 'For laser, a patch test first. Everything that touches you is opened in front of you.' },
+  { title: 'Aftercare, written down', body: 'You leave with instructions for the days that matter, and a line to the studio if anything worries you.' },
+];
 
 const standards = [
   { title: '100% disposable tools', body: 'Needles, blades and laser tips are opened in front of you and dropped into sharps when we are done. Nothing is ever reused.' },
   { title: 'Screening before selling', body: 'Patch tests before laser, and written dermatology clearance before any mole is touched. If a treatment is wrong for your skin or medication, we decline the booking.' },
-  { title: 'Built for Indian skin', body: 'Nd:YAG before diode, peels before lasers, and protocols chosen for Fitzpatrick IV–V — because most machines and most price lists are designed for skin that is not yours.' },
   { title: 'Evidence over speed', body: 'Pigmentation goes topicals first, peels second, devices third — the order the literature supports, even when you came in asking for laser.' },
 ];
 ---
 
 <Layout
   title={`${site.legalName} | Permanent Makeup, Skin & Laser in ${site.city}`}
-  description="Permanent makeup, microneedling and Korean glass skin, tone and pigment treatments and laser hair removal — built for Indian skin, in Sigra, Varanasi."
-  immersive
+  description={`Permanent makeup, microneedling and Korean glass skin, tone and pigment treatments and laser hair removal in ${site.city}. Every price on the site; the first consultation is free.`}
 >
-  <!-- The flight's scene titles are rendered as <h2> by the vendored engine, so
-       the document would otherwise have no <h1>. This supplies one for screen
-       readers and search without competing with the flight's own typography. -->
-  <h1 class="sr-only">
-    {site.legalName} — permanent makeup, skin and laser treatments in {site.address.line2}
-  </h1>
-
-  <!-- The camera flight. Must be the first thing in the document: the scroll
-       engine reads window.scrollY absolutely and sizes its own track. -->
-  <ScrollWorld />
-
-  <!-- Everything below scrolls up over the engine's fixed stage, so it needs an
-       opaque ground and a z-index above it (see .after-flight). -->
-  <div class="after-flight">
-    <!-- The studio is no longer PMU-only. This rail is the first thing after
-         the flight so the breadth of the menu registers before any one
-         treatment does. -->
-    <section class="menu-section">
-      <div class="container">
-        <SectionHeading title="Four families, one standard" subtitle="The Menu" />
-
-        <div class="menu-grid">
-          {menu.map(({ category, count, from }) => (
-            <a href={`/treatments#${category.id}`} class="menu-card" data-cat={category.id}>
-              <span class="menu-card__rule" aria-hidden="true"></span>
-              <h3>{category.label}</h3>
-              <p class="menu-card__tagline">{category.tagline}</p>
-              <span class="menu-card__meta">
-                {count} {count === 1 ? 'treatment' : 'treatments'}
-                {from ? <> &middot; from ₹{from.toLocaleString('en-IN')}</> : null}
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="prices" id="prices">
-      <div class="container">
-        <SectionHeading title="Every treatment, every price" subtitle="The Price List" />
-        <PriceList />
-        <p class="prices__note text-muted">{site.gstNote}</p>
-      </div>
-    </section>
-
-    <section class="bg-surface">
-      <div class="container">
-        <SectionHeading title="Our Signature Treatments" subtitle="Services" />
-
-        <div class="treatments-grid">
-          {featuredTreatments.map((treatment) => (
-            <TreatmentCard
-              title={treatment.data.title}
-              category={treatment.data.category}
-              price={treatment.data.price}
-              duration={treatment.data.duration}
-              sessions={treatment.data.sessions}
-              description={treatment.data.description}
-              slug={treatment.id}
-              image={treatment.data.image}
-              medical={treatment.data.medical}
-            />
-          ))}
-        </div>
-
-        <div class="view-all">
-          <a href="/treatments" class="btn-outline">View all {allTreatments.length} treatments</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="standard">
-      <div class="container">
-        <div class="standard-grid">
-          <div>
-            <SectionHeading title={`The ${site.name} Standard`} subtitle="Why Choose Us" alignment="left" />
-            <p class="standard-lede">
-              Half of what we do leaves a mark on your face and the other half changes how
-              your skin behaves for months. We treat both that way — medical-grade hygiene
-              first, artistry second, and nothing done in an afternoon that we can't stand
-              behind in two years. No miracle courses, no laser sold
-              to someone whose melasma will only come back darker.
-            </p>
-          </div>
-
-          <ul class="standard-list">
-            {standards.map((item, i) => (
-              <li>
-                <span class="standard-num">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p class="text-muted">{item.body}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    {featuredReview && (
-      <section class="quote bg-offset">
-        <div class="container">
-          <figure>
-            <div class="quote-stars" aria-label={`${featuredReview.data.rating} out of 5 stars`}>
-              {'★'.repeat(featuredReview.data.rating)}
-            </div>
-            <blockquote>{featuredReview.data.text}</blockquote>
-            <figcaption>
-              <span class="quote-name">{featuredReview.data.name}</span>
-              <span class="quote-service">{featuredReview.data.service}</span>
-            </figcaption>
-          </figure>
-          <div class="quote-more">
-            <a href="/reviews" class="btn-outline">Read all reviews</a>
-          </div>
-        </div>
-      </section>
-    )}
-
-    <section class="closing">
-      <div class="container closing-inner">
-        <h2>Ready when you are.</h2>
-        <p class="text-muted">
-          Consultations are free and there is no obligation to book on the day. Bring photos
-          of what you like — and of what you don't — plus a list of every medication you take.
-          Visiting the city? Tell us your dates and we'll tell you honestly what fits.
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">{site.address.line2}</span>
+        <h1>Brows, lips, skin and laser — done carefully, in {site.city}.</h1>
+        <p class="hero-lede">
+          Permanent makeup, skin treatments and laser hair removal by one artist, with every price
+          on the site and a free consultation before anything is booked.
         </p>
-        <div class="closing-actions">
-          <a href="/contact" class="btn-primary">Book Appointment</a>
-          <a href="/artist" class="btn-secondary">Meet the artist</a>
+        <div class="hero-actions">
+          <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
+          <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
         </div>
+        <ul class="hero-prices" aria-label="Three of our prices">
+          {heroPrices.map(p => (
+            <li><a href={p.href}><span>{p.title}</span> <strong>{p.price}</strong></a></li>
+          ))}
+          <li><a href="/prices" class="hero-prices__all">All prices →</a></li>
+        </ul>
       </div>
-    </section>
-  </div>
+      <div class="hero-image">
+        <img src="/images/hero.jpg" alt="A calm treatment room with a single bed by a window" width="1024" height="1024" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="What you can count on">
+    <div class="container">
+      <ul class="trust-list">
+        {trust.map(item => (
+          <li>
+            <span class="trust-mark" aria-hidden="true">✓</span>
+            <span class="trust-en">{item.en}</span>
+            <span class="trust-hi" lang="hi">{item.hi}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="prices" id="prices">
+    <div class="container">
+      <SectionHeading title="Every treatment, every price" subtitle="The Price List" />
+      <PriceList />
+      <p class="prices__note text-muted">{site.gstNote}</p>
+    </div>
+  </section>
+
+  <section class="section bg-surface">
+    <div class="container">
+      <SectionHeading title="Your first visit, step by step" subtitle="How it works" />
+      <ol class="steps">
+        {steps.map((step, i) => (
+          <li>
+            <span class="step-num">{i + 1}</span>
+            <h3>{step.title}</h3>
+            <p class="text-muted">{step.body}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="view-all">
+        <a href="/first-visit" class="btn-outline">What to expect, in detail</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading title="Our signature treatments" subtitle="Treatments" />
+      <div class="treatments-grid">
+        {featuredTreatments.map((treatment) => (
+          <TreatmentCard
+            title={treatment.data.title}
+            category={treatment.data.category}
+            price={treatment.data.price}
+            duration={treatment.data.duration}
+            sessions={treatment.data.sessions}
+            description={treatment.data.description}
+            slug={treatment.id}
+            image={treatment.data.image}
+            medical={treatment.data.medical}
+          />
+        ))}
+      </div>
+      <div class="view-all">
+        <a href="/treatments" class="btn-outline">View all {allTreatments.length} treatments</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="standard bg-offset">
+    <div class="container">
+      <div class="standard-grid">
+        <div>
+          <SectionHeading title={`The ${site.name} standard`} subtitle="Why it is safe here" alignment="left" />
+          <p class="standard-lede">
+            Half of what we do leaves a mark on your face and the other half changes how your skin
+            behaves for months. We treat both that way — hygiene first, artistry second, and nothing
+            done in an afternoon that we can't stand behind in two years.
+          </p>
+          <a href="/artist" class="btn-outline">Meet Roshni, the artist</a>
+        </div>
+        <ul class="standard-list">
+          {standards.map((item, i) => (
+            <li>
+              <span class="standard-num">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p class="text-muted">{item.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="container closing-inner">
+      <h2>Ready when you are.</h2>
+      <p class="text-muted">
+        The consultation is free and there is no obligation to book on the day. Bring photos of what
+        you like — and of what you don't — and a list of every medication you take.
+      </p>
+      <div class="closing-actions">
+        <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
+        <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
+  .hero {
+    padding: clamp(2rem, 6vw, 5rem) 0 clamp(2rem, 5vw, 4rem);
+    background: radial-gradient(ellipse at top, var(--color-accent-light), transparent 60%);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1.15fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.6rem);
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-lede {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 34rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-prices {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .hero-prices a {
+    display: inline-flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .hero-prices strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .hero-prices__all {
+    color: var(--color-accent) !important;
+    border-style: dashed !important;
+  }
+
+  .hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  /* On a phone the picture is decoration; the promise and the buttons come first. */
+  @media (max-width: 899px) {
+    .hero-image { order: -1; }
+    .hero-image img { aspect-ratio: 16 / 10; }
+  }
+
+  .trust {
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+    background: var(--color-surface);
+    padding: 1.25rem 0;
+  }
+
+  .trust-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem 2rem;
+  }
+
+  @media (min-width: 700px) {
+    .trust-list { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1100px) {
+    .trust-list { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .trust-list li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.6rem;
+    align-items: baseline;
+  }
+
+  .trust-mark {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .trust-en {
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .trust-hi {
+    grid-column: 2;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
   .prices__note {
     text-align: center;
     font-size: 0.85rem;
     margin-top: 2.5rem;
   }
 
-  /* The scroll engine's sky/stage/copy layers are position:fixed at z-index 0/10/20
-     for the life of the page. Post-flight content must therefore sit above them on
-     an opaque ground, or the flight shows through. */
-  .after-flight {
-    position: relative;
-    z-index: 30;
-    background-color: var(--color-bg);
-  }
-
-  .menu-section {
-    padding: clamp(4.5rem, 9vw, 7rem) 0 clamp(1rem, 2vw, 2rem);
-  }
-
-  .menu-grid {
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 980px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1.25rem;
+    gap: 1.5rem;
+    counter-reset: step;
   }
 
-  .menu-card {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 1.75rem;
-    border-radius: var(--radius-md);
+  @media (min-width: 700px) {
+    .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1000px) {
+    .steps { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .steps li {
+    padding: 1.5rem;
     border: 1px solid var(--color-divider);
-    background-color: var(--color-surface);
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
   }
 
-  .menu-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--cat-line);
-    box-shadow: var(--shadow-hover);
+  .step-num {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.9rem;
   }
 
-  /* A short bar of the family's colour, which is the only place the four hues
-     appear at full strength on the homepage. */
-  .menu-card__rule {
-    width: 32px;
-    height: 2px;
-    margin-bottom: 1.5rem;
-    background: var(--cat);
+  .steps h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
   }
 
-  .menu-card h3 {
-    font-size: 1.35rem;
-    margin-bottom: 0.75rem;
-    color: var(--color-text);
-  }
-
-  .menu-card__tagline {
-    flex-grow: 1;
-    margin: 0 0 1.5rem;
+  .steps p {
+    margin: 0;
     font-size: 0.92rem;
-    line-height: 1.65;
-    color: var(--color-text-muted);
-  }
-
-  .menu-card__meta {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--cat);
   }
 
   .view-all {
     text-align: center;
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
   }
 
   .standard {
-    padding: clamp(5rem, 10vw, 8rem) 0;
+    padding: clamp(3rem, 6vw, 5rem) 0;
   }
 
   .standard-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: start;
   }
 
   @media (min-width: 900px) {
     .standard-grid {
-      grid-template-columns: 5fr 6fr;
+      grid-template-columns: 1fr 1.2fr;
       gap: 5rem;
     }
   }
 
   .standard-lede {
-    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-    line-height: 1.8;
     color: var(--color-text-muted);
-    max-width: 42ch;
+    margin-bottom: 1.5rem;
   }
 
   .standard-list {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
   }
 
   .standard-list li {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.5rem;
-    padding: 1.75rem 0;
-    border-top: 1px solid var(--color-divider);
-  }
-
-  .standard-list li:last-child {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
     border-bottom: 1px solid var(--color-divider);
   }
 
+  .standard-list li:last-child { border-bottom: 0; }
+
   .standard-num {
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: var(--color-accent);
-    padding-top: 0.2rem;
+    line-height: 1;
   }
 
   .standard-list h3 {
     font-size: 1.2rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
   }
 
   .standard-list p {
     margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.92rem;
   }
 
-  /* Featured review */
-  .quote {
-    padding: clamp(4rem, 9vw, 7rem) 0;
-    text-align: center;
-  }
-
-  .quote figure {
-    margin: 0 auto;
-    max-width: 46rem;
-  }
-
-  .quote-stars {
-    color: var(--color-accent);
-    letter-spacing: 0.3rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .quote blockquote {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3.2vw, 2.25rem);
-    line-height: 1.35;
-    font-weight: 300;
-    color: var(--color-text);
-  }
-
-  .quote blockquote::before { content: '\201C'; }
-  .quote blockquote::after  { content: '\201D'; }
-
-  .quote figcaption {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .quote-name {
-    font-weight: 600;
-    color: var(--color-accent-dark);
-  }
-
-  .quote-service {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-text-muted);
-  }
-
-  .quote-more {
-    margin-top: 3rem;
-  }
-
-  /* Closing CTA */
   .closing {
-    padding: clamp(5rem, 10vw, 8rem) 0;
+    padding: clamp(3rem, 8vw, 6rem) 0;
+    text-align: center;
   }
 
   .closing-inner {
-    text-align: center;
     max-width: 40rem;
   }
 
   .closing h2 {
-    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 1rem;
   }
 
   .closing p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
   }
 
   .closing-actions {
     display: flex;
-    gap: 1rem;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
   }
 </style>
