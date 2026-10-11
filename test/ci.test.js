@@ -154,6 +154,38 @@ it('no structured data states a rating, a review or opening hours (site rule 6)'
   assert(!/aggregateRating|"review"|openingHours/i.test(text), 'unconfirmed facts in structured data');
 });
 
+console.log('\n--- 3d. Pictures (docs/IMAGE-SOURCES.md) ---');
+it('every picture a treatment names exists', () => {
+  for (const file of treatmentFiles) {
+    const image = fs.readFileSync(path.join(treatmentsDir, file), 'utf8').match(/^image:\s*"([^"]+)"/m)?.[1];
+    if (image) assert(fs.existsSync(path.resolve('public', image.replace(/^\//, ''))), `${file}: ${image} is missing`);
+  }
+});
+
+it('every picture in public/images has its origin recorded', () => {
+  const sources = fs.readFileSync(path.resolve('docs/IMAGE-SOURCES.md'), 'utf8');
+  for (const file of fs.readdirSync(path.resolve('public/images'))) {
+    if (file.startsWith('.')) continue;
+    assert(sources.includes('`' + file + '`'), `${file} has no row in docs/IMAGE-SOURCES.md`);
+  }
+});
+
+console.log('\n--- 3c. Launch Switch (docs/specs/P7-not-launched.md) ---');
+// `launched` in src/data/site.ts decides whether the site may be indexed. The pages and robots.txt must
+// both follow it — one saying "stay out" while the other says "come in" is the failure this guards.
+const launched = /\blaunched:\s*true\b/.test(fs.readFileSync(path.resolve('src/data/site.ts'), 'utf8'));
+it(`pages and robots.txt agree with site.launched (${launched})`, () => {
+  const robots = fs.readFileSync(path.join(distDir, 'robots.txt'), 'utf8');
+  const blocksAll = /^Disallow: \/$/m.test(robots);
+  assert.strictEqual(blocksAll, !launched, `robots.txt ${blocksAll ? 'blocks' : 'allows'} crawlers`);
+  assert.strictEqual(/^Sitemap: /m.test(robots), launched, 'robots.txt sitemap line');
+  for (const page of expectedPages.filter(p => p.endsWith('.html'))) {
+    const html = fs.readFileSync(path.join(distDir, page), 'utf8');
+    const noindex = /<meta name="robots" content="noindex, nofollow">/.test(html);
+    assert.strictEqual(noindex, !launched, `${page}: noindex is ${noindex ? 'present' : 'absent'}`);
+  }
+});
+
 console.log('\n--- 4. Inbound Booking & Telegram Notification Route ---');
 it('src/pages/api/contact.ts exists with Telegram bot integration', () => {
   const contactApi = fs.readFileSync(path.resolve('src/pages/api/contact.ts'), 'utf8');

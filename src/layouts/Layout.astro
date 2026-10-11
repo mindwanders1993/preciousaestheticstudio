@@ -76,6 +76,7 @@ const categoryTokens = [
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {!site.launched && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Social previews -->
     <meta property="og:type" content="website" />
@@ -211,6 +212,7 @@ const categoryTokens = [
           {site.gstNote} Treatment information on this site is general guidance, not medical
           advice. Laser, pigmentation and lesion services require consultation and screening;
           moles are removed only with a dermatologist's written clearance. Individual results vary.
+          Pictures on this site are illustrative; they do not show the studio's clients or their results.
         </p>
         <p class="text-muted">&copy; {new Date().getFullYear()} {site.legalName}. All rights reserved.</p>
       </div>

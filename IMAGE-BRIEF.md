@@ -36,20 +36,25 @@ Nothing else changes — the site picks them up on the next build.
 
 ---
 
-## The 10 treatment images
+## The 11 treatment images
 
 | # | Filename | Prompt (append to house style) |
 |---|---|---|
 | 1 | `microblading.jpg` | Extreme close-up of an Indian woman's eyebrow being shaped by a gloved artist holding a fine microblading tool. Focus on the brow and the tool tip. Her eye is closed, relaxed. Warm skin tone, soft daylight. |
 | 2 | `lip-blush.jpg` | Close-up of an Indian woman's lower face, lips relaxed and softly tinted a natural rose. Gloved hand just entering frame with a fine PMU tool. Soft warm light, shallow focus on the lips. |
 | 3 | `microneedling.jpg` | An Indian woman reclining on a treatment bed, eyes closed, calm, while a gloved practitioner passes a microneedling pen across her cheek. Warm daylight, blush-toned towel. |
-| 4 | `collagen-restore.jpg` | An Indian woman reclining, eyes closed, as a gloved hand glides a smooth radiofrequency handpiece along her jawline. Serene, warm, spa-like. No blue device glow. |
 | 5 | `glass-skin.jpg` | An Indian woman with luminous, dewy, exceptionally hydrated skin, head wrapped in a soft cream towel, eyes closed. Light reflecting off her skin in one continuous sheen. Warm and radiant. |
-| 6 | `pigmentation-correction.jpg` | Gloved hand applying a clear serum to an Indian woman's cheek with a small fan brush. She reclines with eyes closed. Focus on the brush and cheek. Warm, clinical but soft. |
-| 7 | `japanese-brightening.jpg` | Gloved hands pressing a hydrating serum into an Indian woman's face with flat palms. Eyes closed, calm. Warm light, no product bottle visible. |
+| 7 | `japanese-glow.jpg` | Gloved hands pressing a hydrating serum into an Indian woman's face with flat palms. Eyes closed, calm. Warm light, no product bottle visible. |
 | 8 | `under-eye.jpg` | Extreme close-up of an Indian woman's under-eye area with a soft gold hydrogel eye patch applied. Eye closed, lashes visible. Warm, intimate, shallow focus. |
 | 9 | `laser-hair-removal.jpg` | Close-up of a laser handpiece against smooth Indian skin on a forearm or underarm, gloved hand holding it. Clean white towel. Abstract and calm — no face in frame. |
 | 10 | `mole-removal.jpg` | Close-up of a gloved hand holding a dermatoscope over a small mole on Indian skin, on a soft blush-pink background. Reads as *examination*, not surgery. Minimal, calm, no blades or blood. |
+| 11 | `skin-whitening.jpg` | An Indian woman lies face down on a treatment bed, shoulders and upper back bare, a blush-pink towel across her lower back, while a practitioner in cream gloves brushes a smooth cream-white treatment mask across her shoulders with a wide soft fan brush. Her face is turned away and not visible. Calm, spa-like, warm brown skin tone. |
+| 12 | `aura-whitening.jpg` | Extreme close-up of an Indian woman's cheek, jawline and closed eye, her warm brown skin luminous and even with a soft dewy sheen, as a hand in a cream glove holds a slim glass pipette releasing a single drop of clear serum onto her cheekbone. Shallow focus on the droplet. Calm and relaxed, not glamorous. |
+| 13 | `vitiligo.jpg` | Close-up of a practitioner's hands in plain smooth cream gloves, with no rings and no jewellery on the gloved hands, gently cradling an Indian woman's hand that has natural vitiligo, with irregular lighter patches of skin across the knuckles and fingers, resting on a soft blush-pink linen towel, as in a calm consultation. No faces in frame. Respectful, unhurried, dignified. |
+
+> Rows 4 and 6 went with their treatments (11 Oct 2026); rows 11 to 13 were added the same day, and their
+> pictures generated from exactly these lines. `PPET Treatment` has no row: what it is, is not known yet.
+> Every picture's origin is recorded in `docs/IMAGE-SOURCES.md`.
 
 > **9 and 10 deliberately show no faces.** Those pages are about screening and
 > caution; abstract framing keeps them from looking alarming.

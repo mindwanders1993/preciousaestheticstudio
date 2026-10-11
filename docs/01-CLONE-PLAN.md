@@ -119,13 +119,20 @@ These are in the source's `AGENTS.md` and stay true here:
 
 ## 8. Before it goes live
 
-- [ ] Real name, address, phone, WhatsApp and hours in `src/data/site.ts`.
-- [ ] Every price confirmed — the source's are researched estimates.
+Brought up to date on 11 Oct 2026: the studio is Roshni Verma's own, the prices are hers, and the site has a
+launch switch.
+
+- [ ] The "must be answered" items of `docs/04-FOR-ROSHNI.md` are settled: the dermatologist arrangement, what
+      the Vitiligo, PPET and Whitening treatments are, and whether prices include GST.
 - [ ] Laser and mole removal either backed by a real screening arrangement or removed.
-- [ ] The founder's own name, credentials and portrait; nothing of Aura Blush's founder.
+- [ ] Real address, hours, phone, WhatsApp and email in `src/data/site.ts`.
+- [ ] Roshni has read what the site says about her — training, experience, the story on the Artist and About
+      pages — and corrected it.
 - [ ] The reviews page still empty unless real reviews, given with permission, are in.
-- [ ] Booking requests go to this studio's chat, not Aura Blush's.
-- [ ] `site:` matches the live domain, so the sitemap lists the right addresses.
+- [ ] Booking requests go to this studio's own chat: one sent from the deployed site is seen to arrive.
+- [ ] `site:` in `astro.config.mjs` matches the live domain, so the sitemap lists the right addresses.
+- [ ] **Last: `launched: true` in `src/data/site.ts`, by pull request.** Until then every page is marked
+      not-to-be-indexed and `robots.txt` keeps crawlers out (`docs/specs/P7-not-launched.md`).
 
 ## 9. Not in this plan
 

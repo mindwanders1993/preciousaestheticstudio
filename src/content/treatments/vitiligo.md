@@ -4,6 +4,7 @@ category: "pigment"
 order: 60
 price: "₹6,000"
 duration: "Confirmed at consultation"
+image: "/images/vitiligo.jpg"
 sessions: "Confirmed at consultation"
 downtime: "Confirmed at consultation"
 results: "Confirmed at consultation"

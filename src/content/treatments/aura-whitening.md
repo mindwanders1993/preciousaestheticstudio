@@ -4,6 +4,7 @@ category: "pigment"
 order: 40
 price: "Price on consultation"
 duration: "Confirmed at consultation"
+image: "/images/aura-whitening.jpg"
 sessions: "Confirmed at consultation"
 downtime: "Confirmed at consultation"
 results: "Confirmed at consultation"

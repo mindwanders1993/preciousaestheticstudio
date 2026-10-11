@@ -29,6 +29,21 @@ All of it sits comfortably inside Vercel's free Hobby tier.
 Every push to `main` redeploys automatically. Pull requests get their own
 preview URL, which is a good way to show her a change before it goes live.
 
+## A preview first — the site is not launched
+
+`src/data/site.ts` holds `launched: false`. While it does:
+
+- every page carries `<meta name="robots" content="noindex, nofollow">`;
+- `/robots.txt` says `Disallow: /`.
+
+So the first deployment can be shown to Roshni at its `.vercel.app` address
+without turning up in search. Vercel only does this by itself for pull-request
+previews; the address `main` deploys to is otherwise open to search engines.
+
+**To launch:** settle the list below, then change `launched` to `true` in a
+pull request. That one line removes the tag, opens `robots.txt` and adds the
+sitemap to it. Attach the domain (next section) in the same sitting.
+
 ## Custom domain
 
 The domain is `preciousaestheticstudio.com`. Vercel does not charge to attach
@@ -57,18 +72,19 @@ that the booking route still runs.
 
 ## Before it goes live
 
-Not deployment blockers, but do not launch without them — see
-`HANDOFF-FOUNDER.md`:
+`docs/01-CLONE-PLAN.md` §8 is the list, and `docs/04-FOR-ROSHNI.md` is what the
+owner is asked. In short:
 
+- [ ] The "must be answered" items of `docs/04-FOR-ROSHNI.md` — the
+      dermatologist arrangement behind laser and mole removal, and what the
+      Vitiligo, PPET and Whitening treatments are. A treatment that cannot be
+      backed comes off the site.
+- [ ] Real address, hours, phone, WhatsApp and email in `src/data/site.ts`.
 - [ ] **Keep the reviews page empty** until there are real reviews, each given
-      with the client's permission. `src/content/reviews/` holds none now, and
-      an invented one is illegal advertising.
-- [ ] Replace `[FOUNDER NAME]` and the bracketed bio/credentials.
-- [ ] Real phone, WhatsApp, email, address in `src/data/site.ts`.
-- [ ] Confirm every price — the current ones are researched estimates.
-- [ ] Decide on laser and mole removal (§6 of the handoff). Drop them if she is
-      not trained and equipped for them.
-- [ ] Swap stock treatment photos for her own work as it accumulates.
+      with the client's permission. An invented one is illegal advertising.
+- [ ] Booking requests arrive in this studio's own Telegram chat — send one
+      from the deployed site and see it land.
+- [ ] Last of all: `launched: true`.
 
 ## Notes
 

@@ -12,6 +12,17 @@ export const site = {
   city: 'Varanasi',
 
   /**
+   * Is the site public yet?
+   *
+   * While this is false, every page tells search engines not to index it and
+   * `/robots.txt` tells crawlers to stay out, so the site can sit on a host and
+   * be shown to the owner without turning up in search. Set it to true to launch
+   * — and only once the "must be answered" items of docs/04-FOR-ROSHNI.md are
+   * settled (docs/specs/P7-not-launched.md).
+   */
+  launched: false as boolean,
+
+  /**
    * Locality confirmed as Sigra. The building/street line and the landmark are
    * still unknown — leave them blank rather than inventing them; both render
    * only when filled in. See HANDOFF-FOUNDER.md §16.
