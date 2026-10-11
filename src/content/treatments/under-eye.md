@@ -1,9 +1,9 @@
 ---
 title: "Dark Under-Eye Treatment"
 category: "pigment"
-order: 30
-price: "₹3,500"
-priceNote: "Course of 3 — ₹9,500"
+order: 50
+price: "₹5,000"
+priceNote: "Per sitting."
 duration: "45 min"
 image: "/images/under-eye.jpg"
 sessions: "3 sessions, 4 weeks apart"

@@ -1,10 +1,9 @@
 ---
-title: "Microneedling — Collagen Induction"
+title: "Microneedling"
 category: "skin"
 order: 10
 featured: true
-price: "₹3,500"
-priceNote: "Course of 3 — ₹9,000"
+price: "₹8,000"
 duration: "60–75 min"
 image: "/images/microneedling.jpg"
 sessions: "3–6 sessions, 4–6 weeks apart"

@@ -1,10 +1,9 @@
 ---
-title: "Lip Blush Tattoo"
+title: "Lip Blushing (Semi-Permanent Tattooing)"
 category: "pmu"
 order: 20
 featured: true
-price: "₹14,000"
-priceNote: "Includes the 6–8 week perfecting visit."
+price: "₹5,000"
 duration: "2 hrs"
 sessions: "1 session + perfecting visit at 6–8 weeks"
 downtime: "2–4 days of swelling and dark, tight-feeling colour"

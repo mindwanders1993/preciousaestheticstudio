@@ -13,10 +13,10 @@ description: Muda (無駄) — waste and hazard sweep for the Precious Aesthetic
 ## 🔍 The 4 Muda Audit Passes
 
 ### 1. Leftover Source Audit
-The other studio's name, place and people, anywhere in the tree. Run the rebrand kata (`shiken`), which uses
-the greps of `docs/02-REBRAND-CHECKLIST.md` §9. For each file listed, show the line:
+The name the code was written under, anywhere in the tree. Run the rebrand kata (`shiken`), which uses the
+grep of `docs/02-REBRAND-CHECKLIST.md` §9. For each file listed, show the line:
 ```bash
-grep -rInE 'aura ?blush|aurablush|varanasi|sigra|roshni|1leeja10|bhojpuri' src public world test \
+grep -rInE 'aura ?blush|aurablush' src public world test \
   AGENTS.md DEPLOY.md HANDOFF-FOUNDER.md IMAGE-BRIEF.md PORTRAIT-BRIEF.md package.json astro.config.mjs
 ```
 

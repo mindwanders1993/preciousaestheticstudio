@@ -74,8 +74,7 @@ One branch at a time. A phase is one branch, or a few in order — never two ope
 
 1. **Scope.** Compare `git status --porcelain` and `git diff --name-only` with the spec's file list. Anything
    outside it is a finding, not something to tidy.
-2. **Gate.** Run the three gates and read their exit codes and counts. For phases 2 and 3, the rebrand kata
-   (`shiken`) as well.
+2. **Gate.** Run the three gates and read their exit codes and counts. The rebrand kata (`shiken`) as well.
 3. **Integrity.** Check the diff for a weakened or deleted check in `test/ci.test.js`, for `continue-on-error`
    or `|| true` added to a workflow, for a secret or `.env.local`, and against the seven site rules.
 4. **Clean** → show the owner the files, the gates' result and the message; wait for the yes; then stage the
@@ -122,7 +121,7 @@ Two or three sentences: what this changes and why.
 - [x] `npm run check` — 0 errors
 - [x] `npm run build`
 - [x] `npm test` — <n> of <n> checks
-- [ ] Rebrand greps print nothing (phases 2 and 3)
+- [ ] Rebrand grep prints nothing
 - [ ] UAT report: docs/reviews/UAT-<date>.md (when the change is visible to a visitor)
 
 ## Site rules

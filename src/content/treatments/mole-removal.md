@@ -1,9 +1,8 @@
 ---
-title: "Mole Removal"
+title: "Mole Removal Treatment"
 category: "clinical"
 order: 20
-price: "From ₹2,000"
-priceNote: "First lesion. ₹800 each additional."
+price: "₹4,500"
 duration: "30 min"
 image: "/images/mole-removal.jpg"
 sessions: "1 session, after dermatology clearance"

@@ -52,7 +52,7 @@ phone: when time is short, the phone walk is the one that is not skipped.
 5. **J-05: Medical wording** (rules 2, 3)
    - Every `medical: true` treatment shows the marker on its card and the screening notice on its page.
    - The patch-test and dermatologist-clearance sentences are present and not softened.
-   - No page promises fairer, whiter or lighter skin; the `whitening` FAQ is shown.
+   - No page promises fairer, whiter or lighter skin, and no picture shows a skin-tone before-and-after.
 6. **J-06: A booking, end to end** (rule 7)
    - Submit the form empty → each required field says what is missing.
    - Submit a real request → the visitor sees a confirmation, and **the message arrives in this studio's

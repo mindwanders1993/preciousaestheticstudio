@@ -1,10 +1,10 @@
 ---
-title: "Laser Hair Removal"
+title: "Laser Hair Removal Treatment"
 category: "clinical"
 order: 10
 featured: true
-price: "From ₹1,200"
-priceNote: "Per area. Packages of 6 from ₹6,000; full body from ₹9,500 a session."
+price: "₹25,000"
+priceNote: "Full body."
 duration: "15–60 min"
 image: "/images/laser-hair-removal.jpg"
 sessions: "8–10 sessions, 4–8 weeks apart"

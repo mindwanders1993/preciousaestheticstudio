@@ -45,26 +45,12 @@ export const site = {
   },
 
   languages: 'Hindi, English, Bhojpuri',
-  payments: 'UPI, all major cards (Indian and international), and cash.',
+  payments: 'Payment is taken at the studio.',
 
   /**
-   * Booking-form endpoint. Empty until a form service is connected.
-   *
-   * While empty, the form does NOT pretend to submit — it directs people to
-   * Instagram instead, because a form that swallows a booking request is worse
-   * than no form at all.
-   *
-   * To switch it on: create a free form at https://web3forms.com (or Formspree)
-   * and paste the access key here. Nothing else needs changing.
+   * Shown in the footer and on the contact page. It says nothing about tax:
+   * whether the studio's prices include GST is not confirmed (docs/04-FOR-ROSHNI.md).
    */
-  formEndpoint: '',
-  formAccessKey: '',
-
-  /**
-   * Beauty and wellness services attract 18% GST in India. Every price on the
-   * site is quoted inclusive of it — a price that grows 18% at the counter is
-   * the fastest way to lose a first-time client.
-   */
-  gstNote: 'All prices include 18% GST. No consultation fee, no card surcharge.',
+  gstNote: 'Prices are confirmed with you at consultation. Nothing is paid on this site.',
   currency: '₹',
 } as const;

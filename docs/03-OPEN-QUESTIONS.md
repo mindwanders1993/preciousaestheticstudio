@@ -29,9 +29,11 @@ does until it is answered.
 *(Write each answer here with its date; move the row out of its table when the other documents have been
 updated to match.)*
 
-**1. A second, separate studio** (11 Oct 2026). Precious is its own studio with its own repository, history
-and deployment — instead of renaming Aura Blush inside its repository, because Aura Blush goes on as a studio
-of its own and the two must not share a deployment or a booking chat.
+**1. Its own repository — the same owner** (11 Oct 2026, corrected the same day). Precious Aesthetic Studio has
+its own repository, history and deployment — instead of renaming Aura Blush inside its repository, because
+the two must not share a deployment or a booking chat. It is not a second studio with different people: it is
+Roshni Verma's own studio in Varanasi, and her details, the city and the Instagram account are carried over
+from the Aura Blush site until she replaces them.
 
 **2. It starts with Aura Blush's content** (11 Oct 2026). The ten treatments, the FAQs and the page copy are
 copied as a first draft and edited in phase 3 — instead of empty collections written from scratch, because
@@ -40,3 +42,21 @@ editing is faster and the grep of checklist §9 guards against the source's word
 **3. The `lets-scroll` → `kaiga` rename is committed in aurablush first** (11 Oct 2026) — instead of cloning
 from a working tree with five uncommitted files, because a clone taken from one commit can be checked against
 it later.
+
+**4, 5, 7, 8 — in part** (11 Oct 2026, from the owner; spec `docs/specs/P3-content.md`).
+
+- *The name and the place (4):* Precious Aesthetic Studio, Varanasi. Address, hours and languages are still the
+  Aura Blush site's and wait on Roshni. Nobody pays on the site.
+- *Who runs it (5):* Roshni Verma, the owner. Her bio and portrait are carried over for now.
+- *The menu and prices (7):* twelve treatments under her names, with her prices — the table in the spec's §1.
+  "Whitening" stays in two names, instead of Brightening or Glow, because they are the names she gave.
+- *Contact and bookings (8):* Instagram is the Aura Blush account for now. A Telegram bot and chat of this
+  studio's own are still to be created; WhatsApp, email and her real Instagram come later.
+- *Laser and mole removal (6):* not answered. Both stay on the menu with their screening wording, and the
+  question goes to Roshni before the site is public.
+
+What is still open is asked of Roshni in `docs/04-FOR-ROSHNI.md`.
+
+**13 — in part** (11 Oct 2026). The first deployment is a Vercel preview to show Roshni; the domain is attached
+after she approves — instead of going straight to `preciousaestheticstudio.com`, because she has not seen the
+site. The GitHub repository is public.

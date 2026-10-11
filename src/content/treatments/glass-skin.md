@@ -1,10 +1,9 @@
 ---
-title: "Korean Glass Skin Facial"
+title: "Korean Glass Treatment"
 category: "skin"
 order: 30
 featured: true
-price: "₹3,000"
-priceNote: "Four-facial course — ₹10,500"
+price: "₹20,000"
 duration: "90 min"
 image: "/images/glass-skin.jpg"
 sessions: "Standalone, or monthly to hold the result"
@@ -36,7 +35,7 @@ afterCare:
   - "Keep hydrating; the effect holds longer on skin that is already well watered"
 ---
 
-"Glass skin" is a Korean shorthand for skin so hydrated and even that it reflects light in one continuous sheet rather than scattering it. It is a texture and water-content result, not a whitening one. This facial is the professional version of the multi-step routine that produces it, compressed into ninety minutes.
+"Glass skin" is a Korean shorthand for skin so hydrated and even that it reflects light in one continuous sheet rather than scattering it. It is a texture and water-content result. This facial is the professional version of the multi-step routine that produces it, compressed into ninety minutes.
 
 The sequence runs roughly ten steps. An oil cleanse to dissolve sunscreen and makeup, a water cleanse to take the rest, a gentle enzyme or acid exfoliation to clear the dead layer that dulls reflection, then the part that matters: layered hydration. Toner, essence, ampoule and hyaluronic serum applied wet-on-wet so each layer pulls the next one deeper, finished with a mask that seals the water in.
 

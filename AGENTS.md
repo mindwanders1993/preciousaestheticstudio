@@ -45,15 +45,16 @@ The plan, the rebrand checklist and the open questions about the studio are in `
 The studio operates in **Varanasi**, serving domestic and visiting clients. Name,
 address, phone/WhatsApp, hours, languages, payment methods and the GST note live
 in `src/data/site.ts` — the Layout footer and the contact page both read from it,
-so a relocation is a one-file change. Prices are quoted in ₹ **inclusive of 18%
-GST**; the homepage rail parses the first ₹ figure out of each `price`.
+so a relocation is a one-file change. Prices are quoted in ₹; whether they include
+GST is not confirmed (`docs/04-FOR-ROSHNI.md`), so the site does not say. The homepage
+rail parses the first ₹ figure out of each `price`.
 
 Two content rules that are legal, not stylistic:
 
-- **No fairness / whitening / lightening claims anywhere.** Advertising "fairness
-  of skin" is restricted under the Drugs and Magic Remedies Act and ASCI's code.
-  The Japanese treatment is named *Brightening* and its page says plainly that we
-  do not offer whitening. Don't let this drift back.
+- **No promise of fairer or lighter skin** (site rule 2, changed 11 Oct 2026). Two treatments carry
+  "Whitening" in their names because the owner named them so. No page, FAQ or alt text promises fairer,
+  lighter or whiter skin, no picture shows a skin-tone before-and-after, and darker skin is never presented as
+  a problem. `test/ci.test.js` fails if a treatment or FAQ uses the promising words.
 - **Mole removal and laser are written as running under a consulting
   dermatologist**, who clears every pigmented lesion before it is removed. Nobody
   is named: the `team` collection holds the founder only, and the arrangement is
@@ -67,7 +68,7 @@ reflect that. Don't "simplify" this back to a diode-first page.
 
 ## The treatment menu
 
-The studio is no longer PMU-only. Ten treatments span four **service families**
+The studio is no longer PMU-only. Twelve treatments span four **service families**
 defined in `src/data/categories.ts` — that module is the single source of truth
 for category ids, labels, copy and colour.
 
@@ -85,7 +86,7 @@ for category ids, labels, copy and colour.
   needs a patch test 24–48h ahead, and no pigmented lesion is removed without a
   dermatologist's written clearance, because radiofrequency destroys the tissue
   a pathologist would need. Don't soften that copy into marketing.
-- All ten treatments now carry photography in `public/images/<slug>.jpg`
+- Eight of the twelve treatments carry photography in `public/images/<slug>.jpg`
   (1024x1024, sourced from Pexels — free for commercial use, no attribution
   required). `TreatmentArt.astro` remains the fallback for any treatment added
   without an `image`, drawing a per-family SVG motif tinted from `--cat`.

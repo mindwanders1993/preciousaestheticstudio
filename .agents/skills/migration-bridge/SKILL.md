@@ -41,8 +41,9 @@ user-invocable: false
 4. **`node_modules/`, `dist/`, `.astro/`** — rebuilt here.
 5. **`kaiga/`, `world/renders/`, `world/frames/`** — a nested skill checkout and working media.
 6. **`README.md`** — the source's is starter text; this project's own stays.
-7. **The other studio itself** — its name, city and locality, its founder's name, bio, portrait and Instagram,
-   its pictures of its room, its booking chat. These arrive in the copy and leave in phases 2 to 4 (rule 6).
+7. **The other name and its deployment** — the name Aura Blush, its domain and its booking chat. The founder,
+   the city and the Instagram account are the owner's own and stay (11 Oct 2026); pictures are replaced in
+   phase 4.
 8. **The source's stale statements** — `docs/01-CLONE-PLAN.md` §10 lists where its documents disagree with
    its code. They are corrected here, not copied as facts.
 

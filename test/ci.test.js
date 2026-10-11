@@ -32,16 +32,18 @@ it('dist directory exists', () => {
 const expectedPages = [
   'index.html',
   'treatments/index.html',
-  'treatments/collagen-restore/index.html',
+  'treatments/aura-whitening/index.html',
   'treatments/glass-skin/index.html',
-  'treatments/japanese-brightening/index.html',
+  'treatments/japanese-glow/index.html',
   'treatments/laser-hair-removal/index.html',
   'treatments/lip-blush/index.html',
   'treatments/microblading/index.html',
   'treatments/microneedling/index.html',
   'treatments/mole-removal/index.html',
-  'treatments/pigmentation-correction/index.html',
+  'treatments/ppet/index.html',
+  'treatments/skin-whitening/index.html',
   'treatments/under-eye/index.html',
+  'treatments/vitiligo/index.html',
   'artist/index.html',
   'about/index.html',
   'reviews/index.html',
@@ -60,14 +62,23 @@ for (const page of expectedPages) {
 
 console.log('\n--- 2. Content & Clinical Rules Compliance ---');
 const treatmentFiles = fs.readdirSync(treatmentsDir).filter(f => f.endsWith('.md'));
-it('exactly 10 treatments are declared in content collection', () => {
-  assert.strictEqual(treatmentFiles.length, 10, `Expected 10 treatments, found ${treatmentFiles.length}`);
+it('exactly 12 treatments are declared in content collection', () => {
+  assert.strictEqual(treatmentFiles.length, 12, `Expected 12 treatments, found ${treatmentFiles.length}`);
 });
 
-it('Japanese Brightening explicitly disclaims skin whitening (Drugs & Magic Remedies Act)', () => {
-  const content = fs.readFileSync(path.join(treatmentsDir, 'japanese-brightening.md'), 'utf8');
-  assert(content.includes('We do not offer skin whitening'), 'Anti-whitening statement missing');
-  assert(content.includes('Drugs and Magic Remedies Act'), 'Statutory reference missing');
+// Site rule 2 (docs/specs/P3-content.md §4): "whitening" may appear in a treatment's name, as the owner
+// gave it; no page may promise fairer or lighter skin.
+it('No treatment or FAQ promises fairer or lighter skin (site rule 2)', () => {
+  const promise = /\bfairer\b|\bfairness\b|\blighter (skin|complexion)\b|\blighten(s|ing)? (your|the) (skin|complexion)\b|\bwhiter\b/i;
+  const faqsDir = path.resolve('src/content/faqs');
+  const files = [
+    ...treatmentFiles.map(f => path.join(treatmentsDir, f)),
+    ...fs.readdirSync(faqsDir).filter(f => f.endsWith('.md')).map(f => path.join(faqsDir, f)),
+  ];
+  for (const file of files) {
+    const hit = fs.readFileSync(file, 'utf8').match(promise);
+    assert(!hit, `${path.basename(file)} promises a skin-tone change: "${hit && hit[0]}"`);
+  }
 });
 
 it('Mole removal requires written dermatologist clearance', () => {

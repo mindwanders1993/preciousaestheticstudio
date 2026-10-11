@@ -1,7 +1,8 @@
 # Precious Aesthetic Studio — website
 
-**Status: phase 2 — renamed.** The site carries this studio's name and domain, read from `src/data/site.ts`.
-The city, the founder, the menu and the pictures are still Aura Blush's, and nothing here is deployed.
+**Status: phase 3 — the owner's menu and prices are in; the rest of the content waits on her.** The site shows
+Roshni Verma's twelve treatments and her prices. Pictures are stock, several pages are short on purpose, and
+nothing here is deployed.
 
 This project is a full clone of the Aura Blush site (`~/Desktop/Projects/aurablush`), rebranded and
 re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudio.com`.
@@ -19,6 +20,7 @@ re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudi
 | [`docs/01-CLONE-PLAN.md`](docs/01-CLONE-PLAN.md) | What is copied and what is left behind, the phases in order, and how each is checked |
 | [`docs/02-REBRAND-CHECKLIST.md`](docs/02-REBRAND-CHECKLIST.md) | Every file and line in the source that names Aura Blush, its city or its founder |
 | [`docs/03-OPEN-QUESTIONS.md`](docs/03-OPEN-QUESTIONS.md) | What has to be answered about the studio, and what is assumed until it is |
+| [`docs/04-FOR-ROSHNI.md`](docs/04-FOR-ROSHNI.md) | What the owner is asked to confirm when she sees the preview |
 | [`docs/specs/`](docs/specs/) | One short spec per piece of work, approved before it is built |
 
 ## Skills
@@ -51,8 +53,8 @@ setting).
 
 ## Next step
 
-Phase 3 of the plan — content: the studio's facts, the menu, the team, the FAQs and the place-specific copy.
-It cannot start until questions 4–8 in `docs/03-OPEN-QUESTIONS.md` are answered.
+Show Roshni a preview and get her answers to `docs/04-FOR-ROSHNI.md`. Before that: pictures, the logo and the
+header's fit on a phone, search and agent readiness, and the Vercel preview — one spec each.
 
 ```bash
 npm ci
