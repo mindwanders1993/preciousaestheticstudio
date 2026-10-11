@@ -194,6 +194,15 @@ it('src/pages/api/contact.ts exists with Telegram bot integration', () => {
   assert(contactApi.includes('export const prerender = false'), 'prerender = false missing for serverless execution');
 });
 
+it('the booking route does not answer "received" when nothing was delivered', () => {
+  const contactApi = fs.readFileSync(path.resolve('src/pages/api/contact.ts'), 'utf8');
+  const undelivered = contactApi.slice(contactApi.indexOf('if (!dispatched)'));
+  assert(contactApi.includes('if (!dispatched)'), 'the undelivered case is no longer handled');
+  const beforeSuccess = undelivered.slice(0, undelivered.indexOf('success: true'));
+  assert(/success:\s*false/.test(beforeSuccess) && /status:\s*503/.test(beforeSuccess),
+    'an undelivered request must be answered with an error (503), not with success');
+});
+
 console.log('\n===============================================');
 console.log(`TOTAL CHECKS: ${passed + failed} | PASSED: ${passed} | FAILED: ${failed}`);
 console.log('===============================================\n');

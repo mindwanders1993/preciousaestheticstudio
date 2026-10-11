@@ -13,8 +13,8 @@ description: Dōjō (道場) — local development SOP for the Precious Aestheti
 - This site is a clone. The source's `.env.local` holds **Aura Blush's** Telegram bot token and chat id.
 - That file is not copied (`migration-bridge`), and its values are never typed in here. A booking sent from
   this project with those values lands in another business's phone (rule 7).
-- Until this studio has a bot and a chat of its own, leave the values unset: the form then fails cleanly,
-  which is the correct behaviour.
+- Until this studio has a bot and a chat of its own, leave the values unset: the form then tells the visitor
+  the request could not be sent and points them to Instagram, which is the correct behaviour.
 
 | What | Where |
 | :--- | :--- |
@@ -43,6 +43,14 @@ cp .env.example .env.local      # once; it is git-ignored
 | `DISCORD_WEBHOOK_URL` | optional second destination |
 
 The owner fills these in. An agent never reads `.env.local` back into the conversation.
+
+**To test a booking locally, the values must be in the shell.** The booking route reads `process.env`, and the
+dev server does not put `.env.local` there (seen 12 Oct 2026): with the file alone the route finds no
+destination and answers with its "could not send" error. Start the server like this instead:
+
+```bash
+set -a; source .env.local; set +a; astro dev --background
+```
 
 ### 3. Run
 ```bash

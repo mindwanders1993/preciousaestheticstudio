@@ -55,8 +55,11 @@ one.
 3. Point the registrar's nameservers or records at Vercel as instructed.
 4. HTTPS is issued automatically and free.
 
-**`astro.config.mjs`** — `site:` is `https://preciousaestheticstudio.com`. It
-must match the live domain, or `sitemap-index.xml` will list wrong URLs.
+**`astro.config.mjs`** — on Vercel, `site` follows the project's production
+domain by itself: the `.vercel.app` address now, the custom domain once it is
+attached (the next deployment picks it up). After attaching the domain, open
+`/sitemap-index.xml` and check the addresses in it. On any other host `site` is
+`https://preciousaestheticstudio.com`, and must be changed if the domain is.
 
 ## The free-tier caveat, honestly
 
