@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Enforce Conventional Commits
+
+# Regex pattern for conventional commits
+regex="^(feat|fix|content|docs|style|refactor|perf|test|chore|ci|build|revert)(\([a-zA-Z0-9_-]+\))?: .+"
+
+# Extract the commit message (ignoring comments)
+commit_msg=$(grep -v '^#' "$1" | head -n 1)
+
+if [[ ! $commit_msg =~ $regex ]]; then
+    echo "❌ Invalid commit message."
+    echo "Your message: '$commit_msg'"
+    echo "Please use the Conventional Commits format:"
+    echo "  type(scope): concise imperative description"
+    echo ""
+    echo "Allowed types: feat, fix, content, docs, style, refactor, perf, test, chore, ci, build, revert"
+    echo "Examples:"
+    echo "  content(treatments): confirm prices for the skin family"
+    echo "  fix(nav): mark the current page on treatment routes"
+    exit 1
+fi
+
+# No AI attribution anywhere in this repository's history (kura, hard rule 2). Only the trailer forms are
+# refused, so a subject such as "docs(claude): ..." is still fine.
+if grep -v '^#' "$1" | grep -qiE '^(co-authored-by|claude-session):|generated with \[?claude|noreply@anthropic\.com'; then
+    echo "❌ AI attribution in the commit message."
+    echo "Remove any Co-Authored-By / Claude-Session trailer and any \"Generated with\" line (kura, hard rule 2)."
+    exit 1
+fi
