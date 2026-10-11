@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { categories } from '../data/categories';
 import { site } from '../data/site';
+import { absolute, salonSchema } from '../lib/structured-data';
 
 interface Props {
   title?: string;
@@ -12,12 +13,21 @@ interface Props {
    * flight is behind you (the engine draws its own topbar meanwhile).
    */
   immersive?: boolean;
+  /** Social preview picture, as a site path. Defaults to the studio picture. */
+  image?: string;
+  /** Page-specific structured data, added after the studio's own. */
+  jsonLd?: object[];
+  /** Where the booking buttons lead — a treatment page passes its own prefilled link. */
+  bookHref?: string;
 }
 
 const {
   title = `${site.legalName} | Permanent Makeup, Skin & Laser in ${site.city}`,
   description = "Permanent makeup, microneedling and Korean glass skin, tone and pigment treatments, laser hair removal and mole removal — in Sigra, Varanasi.",
-  immersive = false
+  immersive = false,
+  image = '/images/hero.jpg',
+  jsonLd = [],
+  bookHref = '/contact',
 } = Astro.props;
 
 const nav = [
@@ -34,6 +44,17 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const [markMain, ...markRest] = site.legalName.split(' ');
 const markSub = markRest.join(' ');
 
+const canonical = absolute(Astro.url.pathname, Astro.site);
+const socialImage = absolute(image, Astro.site);
+const structuredData = [salonSchema(Astro.site), ...jsonLd];
+
+// The phone booking bar: everywhere except the homepage flight (which has its own button) and the booking
+// page itself.
+const showBookBar = !immersive && !path.startsWith('/contact');
+const messageLink = site.whatsapp.display
+  ? { label: 'WhatsApp', href: site.whatsapp.href }
+  : { label: 'Instagram', href: site.social.instagram.href };
+
 /**
  * Category colours are emitted here, once, from src/data/categories.ts so the
  * palette has exactly one definition. `--cat-<id>` holds the hue for both
@@ -48,12 +69,36 @@ const categoryTokens = [
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Social previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.legalName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="theme-color" content="#fffcfb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1112" media="(prefers-color-scheme: dark)" />
+
+    <!-- For AI agents: a plain-text map of the site, and the menu as data -->
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+    <link rel="alternate" type="application/json" title="Treatment menu" href="/treatments.json" />
+
+    {structuredData.map(data => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(data)} />
+    ))}
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +124,7 @@ const categoryTokens = [
       })();
     </script>
   </head>
-  <body>
+  <body class:list={{ 'has-book-bar': showBookBar }}>
     <header class:list={['glass-panel', 'main-header', { 'is-immersive': immersive }]}>
       <div class="header-container">
         <a href="/" class="logo" aria-label={site.legalName}>
@@ -97,7 +142,7 @@ const categoryTokens = [
           <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
             <span class="theme-toggle__icon" aria-hidden="true"></span>
           </button>
-          <a href="/contact" class="btn-book" aria-label="Book Appointment">Book<span class="btn-book__rest"> Appointment</span></a>
+          <a href={bookHref} class="btn-book" aria-label="Book Appointment">Book<span class="btn-book__rest"> Appointment</span></a>
         </div>
       </div>
     </header>
@@ -170,6 +215,13 @@ const categoryTokens = [
         <p class="text-muted">&copy; {new Date().getFullYear()} {site.legalName}. All rights reserved.</p>
       </div>
     </footer>
+
+    {showBookBar && (
+      <div class="book-bar">
+        <a href={bookHref} class="book-bar__primary">Book a consultation</a>
+        <a href={messageLink.href} class="book-bar__secondary" target="_blank" rel="noopener">{messageLink.label}</a>
+      </div>
+    )}
 
     <script is:inline>
       // Theme toggle
@@ -395,6 +447,56 @@ const categoryTokens = [
     background-color: var(--color-accent-hover);
     color: white;
     transform: translateY(-2px);
+  }
+
+  /* The phone booking bar. Booking is the one action the site exists for, and on a phone the header button
+     scrolls away with the page; this stays within reach of a thumb. Hidden where there is room for the nav. */
+  .book-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-divider);
+    box-shadow: 0 -6px 24px rgba(44, 27, 29, 0.08);
+  }
+
+  .book-bar a {
+    display: grid;
+    place-items: center;
+    min-height: 46px;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .book-bar__primary {
+    flex: 1;
+    background-color: var(--color-accent);
+    color: white;
+  }
+
+  .book-bar__secondary {
+    padding: 0 1.2rem;
+    border: 1px solid var(--color-divider);
+    color: var(--color-text);
+  }
+
+  @media (max-width: 899px) {
+    .has-book-bar .main-footer {
+      padding-bottom: calc(2rem + 76px + env(safe-area-inset-bottom));
+    }
+  }
+
+  @media (min-width: 900px) {
+    .book-bar {
+      display: none;
+    }
   }
 
   main {

@@ -60,3 +60,8 @@ What is still open is asked of Roshni in `docs/04-FOR-ROSHNI.md`.
 **13 — in part** (11 Oct 2026). The first deployment is a Vercel preview to show Roshni; the domain is attached
 after she approves — instead of going straight to `preciousaestheticstudio.com`, because she has not seen the
 site. The GitHub repository is public.
+
+**Beyond the clone** (11 Oct 2026). The owner asked for the site to be improved, not only cloned — instead of
+holding to "the clone does what the source does" (plan §9), because the aim is a site that wins Roshni
+clients, not a faithful copy. The focus he named: being found by search engines and by AI agents. First work
+under it: `docs/specs/P6-discoverability.md`.

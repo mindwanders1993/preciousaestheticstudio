@@ -155,7 +155,7 @@ const hours = site.hours;
                 {grouped.map(({ category, items }) => (
                   <optgroup label={category.label}>
                     {items.map(t => (
-                      <option value={t.data.title}>{t.data.title}</option>
+                      <option value={t.data.title} data-slug={t.id}>{t.data.title}</option>
                     ))}
                   </optgroup>
                 ))}
@@ -190,6 +190,11 @@ const hours = site.hours;
       if (!form) return;
       const status = form.querySelector('.form-status');
       const button = form.querySelector('.btn-submit');
+
+      // Arriving from a treatment page (/contact?treatment=<slug>): open with that treatment chosen.
+      const wanted = new URLSearchParams(location.search).get('treatment');
+      const match = wanted && [...form.querySelectorAll('#service option')].find(o => o.dataset.slug === wanted);
+      if (match) match.selected = true;
 
       const say = (msg, state) => {
         status.textContent = msg;
@@ -257,14 +262,16 @@ const hours = site.hours;
 <style>
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    /* minmax(0, …): a plain 1fr track grows to fit the treatment select's longest option and pushes the page
+       wider than a phone. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 3rem;
     align-items: start;
   }
 
   @media (min-width: 900px) {
     .contact-grid {
-      grid-template-columns: 1fr 1.6fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
       gap: 4.5rem;
     }
   }

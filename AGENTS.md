@@ -40,6 +40,19 @@ Git rules — `kura` has them in full:
 
 The plan, the rebrand checklist and the open questions about the studio are in `docs/`.
 
+## Search and agent readiness
+
+`src/lib/structured-data.ts` builds the structured data: the studio on every page, each treatment as a
+priced `Service`, the questions on `/treatments` as a `FAQPage`. Three endpoints are generated from `site.ts`
+and the collections — `/robots.txt`, `/llms.txt` (a plain-text map of the site for AI agents) and
+`/treatments.json` (the menu as data). None of them types a fact: add a treatment or change a price in the
+content and all of them follow. Structured data states only what the page shows — no rating, no review, no
+opening hours until the owner confirms them; `test/ci.test.js` holds that.
+
+The homepage price list is `src/components/PriceList.astro`. The phone booking bar is in `Layout.astro`; a page
+passes `bookHref` to send its booking buttons to `/contact?treatment=<slug>`, which opens the form with that
+treatment chosen.
+
 ## Business details
 
 The studio operates in **Varanasi**, serving domestic and visiting clients. Name,

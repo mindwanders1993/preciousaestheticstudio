@@ -5,6 +5,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import TreatmentArt from '../../components/TreatmentArt.astro';
 import { getCategory } from '../../data/categories';
 import { site } from '../../data/site';
+import { breadcrumbSchema, treatmentSchema } from '../../lib/structured-data';
 
 export async function getStaticPaths() {
   const treatments = await getCollection('treatments');
@@ -32,11 +33,29 @@ const elsewhere = treatments
   .filter(t => t.id !== treatment.id && t.data.category !== d.category)
   .sort((a, b) => a.data.order - b.data.order);
 const others = [...sameFamily, ...elsewhere].slice(0, 3);
+
+// The booking form opens with this treatment already chosen.
+const bookHref = `/contact?treatment=${treatment.id}`;
+
+const jsonLd = [
+  treatmentSchema(treatment, cat.label, Astro.site),
+  breadcrumbSchema(
+    [
+      { name: 'Treatments', path: '/treatments' },
+      { name: cat.label, path: `/treatments#${cat.id}` },
+      { name: d.title, path: `/treatments/${treatment.id}` },
+    ],
+    Astro.site,
+  ),
+];
 ---
 
 <Layout
   title={`${d.title} | ${site.legalName}`}
   description={d.description}
+  image={d.image}
+  jsonLd={jsonLd}
+  bookHref={bookHref}
 >
   <section class="treatment-hero" data-cat={cat.id}>
     <div class="container hero-grid">
@@ -77,7 +96,7 @@ const others = [...sameFamily, ...elsewhere].slice(0, 3);
           </div>
         </dl>
 
-        <a href="/contact" class="btn-primary">Book this treatment</a>
+        <a href={bookHref} class="btn-primary">Book this treatment</a>
       </div>
 
       <div class="hero-image">
@@ -169,7 +188,7 @@ const others = [...sameFamily, ...elsewhere].slice(0, 3);
         <div class="care-box care-box--cta">
           <h2>Questions first?</h2>
           <p class="care-note">Consultations are free, and there's no obligation to book on the day.</p>
-          <a href="/contact" class="btn-outline">Book a consultation</a>
+          <a href={bookHref} class="btn-outline">Book a consultation</a>
         </div>
       </aside>
     </div>

@@ -48,7 +48,10 @@ const expectedPages = [
   'about/index.html',
   'reviews/index.html',
   'contact/index.html',
-  'sitemap-index.xml'
+  'sitemap-index.xml',
+  'robots.txt',
+  'llms.txt',
+  'treatments.json'
 ];
 
 for (const page of expectedPages) {
@@ -105,6 +108,50 @@ it('Layout HTML emits all 4 category custom properties (--cat-*)', () => {
 it('scrub-engine.js exists in public and dist', () => {
   assert(fs.existsSync(path.resolve('public/world/scrub-engine.js')), 'public/world/scrub-engine.js missing');
   assert(fs.existsSync(path.join(distDir, 'world/scrub-engine.js')), 'dist/world/scrub-engine.js missing');
+});
+
+console.log('\n--- 3b. Search & Agent Readiness (docs/specs/P6-discoverability.md) ---');
+const ldBlocks = (html) =>
+  [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => JSON.parse(m[1]));
+
+it('every page carries the studio as structured data, a canonical link and a social picture', () => {
+  for (const page of ['index.html', 'treatments/index.html', 'contact/index.html']) {
+    const html = fs.readFileSync(path.join(distDir, page), 'utf8');
+    assert(ldBlocks(html).some(b => b['@type'] === 'BeautySalon'), `${page}: BeautySalon data missing`);
+    assert(html.includes('<link rel="canonical"'), `${page}: canonical link missing`);
+    assert(html.includes('property="og:image"'), `${page}: social picture missing`);
+  }
+});
+
+it('each treatment page describes itself as a Service, priced in INR where it has a price', () => {
+  for (const file of treatmentFiles) {
+    const slug = file.replace(/\.md$/, '');
+    const html = fs.readFileSync(path.join(distDir, 'treatments', slug, 'index.html'), 'utf8');
+    const service = ldBlocks(html).find(b => b['@type'] === 'Service');
+    assert(service, `${slug}: Service data missing`);
+    if (service.offers) assert.strictEqual(service.offers.priceCurrency, 'INR', `${slug}: currency`);
+  }
+});
+
+it('the treatments page marks up exactly the questions it shows', () => {
+  const html = fs.readFileSync(path.join(distDir, 'treatments/index.html'), 'utf8');
+  const faq = ldBlocks(html).find(b => b['@type'] === 'FAQPage');
+  assert(faq, 'FAQPage data missing');
+  const shown = (html.match(/<details class="faq-item"/g) || []).length;
+  assert.strictEqual(faq.mainEntity.length, shown, `FAQ data has ${faq.mainEntity.length}, page shows ${shown}`);
+});
+
+it('llms.txt and treatments.json list every treatment', () => {
+  const llms = fs.readFileSync(path.join(distDir, 'llms.txt'), 'utf8');
+  const menu = JSON.parse(fs.readFileSync(path.join(distDir, 'treatments.json'), 'utf8'));
+  assert.strictEqual(menu.treatments.length, treatmentFiles.length, 'treatments.json is missing treatments');
+  for (const t of menu.treatments) assert(llms.includes(t.url), `llms.txt does not link ${t.id}`);
+});
+
+it('no structured data states a rating, a review or opening hours (site rule 6)', () => {
+  const html = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
+  const text = JSON.stringify(ldBlocks(html));
+  assert(!/aggregateRating|"review"|openingHours/i.test(text), 'unconfirmed facts in structured data');
 });
 
 console.log('\n--- 4. Inbound Booking & Telegram Notification Route ---');
