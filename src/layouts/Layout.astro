@@ -76,6 +76,7 @@ const categoryTokens = [
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {!site.launched && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Social previews -->
     <meta property="og:type" content="website" />

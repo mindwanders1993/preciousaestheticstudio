@@ -49,6 +49,11 @@ and the collections — `/robots.txt`, `/llms.txt` (a plain-text map of the site
 content and all of them follow. Structured data states only what the page shows — no rating, no review, no
 opening hours until the owner confirms them; `test/ci.test.js` holds that.
 
+**The site is not launched.** `launched: false` in `src/data/site.ts` puts `noindex, nofollow` on every page
+and `Disallow: /` in `/robots.txt`, so a deployment can be shown to the owner without being indexed. Do not
+remove either by hand: launching is changing that one value to `true`, in a pull request, after the launch list
+in `docs/01-CLONE-PLAN.md` §8. `test/ci.test.js` fails if the pages and `robots.txt` disagree with the switch.
+
 The homepage price list is `src/components/PriceList.astro`. The phone booking bar is in `Layout.astro`; a page
 passes `bookHref` to send its booking buttons to `/contact?treatment=<slug>`, which opens the form with that
 treatment chosen.
