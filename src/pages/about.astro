@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+import { getCollection } from 'astro:content';
+
+const treatments = await getCollection('treatments');
+
+const stats = [
+  { number: `${treatments.length}`, label: 'Treatments offered' },
+  { number: '4',    label: 'Service families' },
+  { number: '100%', label: 'Disposable tools' },
+];
+---
+
+<Layout
+  title="Our Story | Aura Blush Studio"
+  description="How a permanent-makeup studio in Varanasi became a skin and laser studio too — and the standards that had to come with it."
+>
+  <header class="page-header">
+    <span class="page-header__eyebrow">About Us</span>
+    <h1>The Aura Blush Story</h1>
+    <div class="page-header__rule"></div>
+    <p class="page-header__lede">
+      How a permanent-makeup studio in Varanasi became a skin and laser studio too — and the
+      standards that had to come with it.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="/images/studio.jpg" alt="Inside Aura Blush Studio" loading="lazy" />
+        </div>
+
+        <div class="about-content">
+          <SectionHeading title="From pigment to skin" subtitle="Our Philosophy" alignment="left" />
+          <p>
+            Aura Blush was founded in Sigra to close a gap this city had: high-end cosmetic
+            work you did not have to travel to Delhi or Lucknow for. Permanent makeup shouldn't
+            look like a tattoo — it should look like makeup applied by someone who knows your
+            face, that simply never washes off.
+          </p>
+          <p>
+            Our philosophy is rooted in <strong>subtle enhancement</strong>. We don't work from
+            one-size-fits-all stencils. Every set of brows and lips is custom-mapped to your
+            bone structure and your natural asymmetry — because faces aren't symmetrical, and
+            results that pretend otherwise are the ones that look done.
+          </p>
+          <p>
+            The menu grew because our clients kept asking the same follow-up question. Brows
+            and lips solve one thing; they don't touch texture, tone or the pigmentation that
+            was bothering someone long before they booked. So the menu grew into four families
+            of treatment — <strong>and the screening that has to come with them</strong>.
+            Patch tests before laser. Dermatology clearance before any mole. Topicals and
+            peels before we will point a device at melasma.
+          </p>
+
+          <div class="stats-grid">
+            {stats.map(stat => (
+              <div class="stat">
+                <span class="number">{stat.number}</span>
+                <span class="label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-offset">
+    <div class="container values">
+      <SectionHeading title="What we won't compromise on" subtitle="Standards" />
+      <ul class="accent-list values-list">
+        <li><strong>Sterility.</strong> Single-use needles, blades and laser tips, opened in front of you, autoclaved workstation, sharps disposal on site.</li>
+        <li><strong>Honesty.</strong> If your skin, medication or expectations make a treatment a bad idea, we say so and don't take the booking.</li>
+        <li><strong>Scope.</strong> One artist working strictly inside what she is certified for. Anything that needs a doctor is referred to one — we don't improvise near a diagnosis.</li>
+        <li><strong>Evidence over speed.</strong> The faster option is often the one that causes rebound pigmentation. We treat in the order the literature supports, even when it costs us the sale.</li>
+        <li><strong>Patience.</strong> Mapping takes as long as it takes, and a collagen course takes the months it takes. Nothing here is sold as a single-visit fix that isn't one.</li>
+        <li><strong>Honest naming.</strong> We do not sell fairness, whitening or lightening, whatever it is called this year. Even tone is a real result; a different complexion is not one we would offer you.</li>
+        <li><strong>Aftercare.</strong> Every client leaves with written instructions, sunscreen that suits this climate, and a WhatsApp line for the days that matter most.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+  }
+
+  .about-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .about-image img {
+    display: block;
+    width: 100%;
+    height: clamp(320px, 45vw, 520px);
+    object-fit: cover;
+  }
+
+  .about-content p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .about-content strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-divider);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .number {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .values {
+    max-width: 46rem;
+  }
+
+  .values-list li {
+    padding-bottom: 1.1rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--color-divider);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .values-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .values-list strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+</style>
