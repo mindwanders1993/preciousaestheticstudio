@@ -1,10 +1,9 @@
 ---
-title: "Nano Microblading"
+title: "Microblading"
 category: "pmu"
 order: 10
 featured: true
-price: "₹12,000"
-priceNote: "Includes the 6–8 week perfecting visit."
+price: "₹5,000"
 duration: "2 hrs"
 sessions: "1 session + perfecting visit at 6–8 weeks"
 downtime: "None cosmetically. 7–10 days of flaking you can work through"

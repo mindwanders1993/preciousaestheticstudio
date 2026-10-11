@@ -1,6 +1,6 @@
 ---
 name: invariants
-description: The seven site rules of the Precious Aesthetic Studio website - brand facts only from site.ts, no fairness or whitening claims, medical wording kept as written, family colours only from --cat, the vendored flight engine, nothing invented about the studio, and secrets only from the environment.
+description: The seven site rules of the Precious Aesthetic Studio website - brand facts only from site.ts, no promise of fairer or lighter skin, medical wording kept as written, family colours only from --cat, the vendored flight engine, nothing invented about the studio, and secrets only from the environment.
 user-invocable: false
 ---
 
@@ -18,11 +18,17 @@ user-invocable: false
 - **Approved**: `site.name`, `site.legalName`, `site.city` in a title, the logo, the footer, the booking message.
 - **Rejected**: `"Treatments | Precious Aesthetic Studio"` typed into a page's frontmatter.
 
-## 2. No fairness, whitening or lightening claim
-- **Rule**: Nowhere on the site — copy, FAQ, picture alt text, page description — is skin promised to become
-  fairer, whiter or lighter. It is restricted advertising in India.
-- The Japanese treatment is named *Brightening*, and the `whitening` FAQ says plainly that whitening is not
-  offered. Both exist to hold this line and stay whatever the menu becomes.
+## 2. No promise of fairer or lighter skin
+- **Rule** (changed 11 Oct 2026, `docs/specs/P3-content.md` §4): "Whitening" may appear in a treatment's
+  **name**, as the owner gave it — *Skin Whitening Treatment*, *Aura Whitening Treatment*. No page, FAQ,
+  description or alt text promises fairer, lighter or whiter skin; no picture shows a skin-tone
+  before-and-after; darker skin is never presented as a problem.
+- **Why**: India's advertising standards body (ASCI) has guidelines against the last two. No law banning the
+  word itself was found, and the names are the owner's.
+- `test/ci.test.js` holds the line: it fails if a treatment or FAQ file uses the promising words.
+- **Vitiligo** is listed under the owner's name with no description of a cure. Leucoderma is on the schedule
+  of the Drugs and Magic Remedies (Objectionable Advertisements) Act; the wording there is not expanded until
+  the owner has said what the treatment is (`docs/04-FOR-ROSHNI.md`, question 2).
 
 ## 3. The medical wording is not marketing copy
 - **Rule**: The patch test 24–48 hours before laser, and a dermatologist's written clearance before any
@@ -46,9 +52,12 @@ user-invocable: false
 - **Rule**: No review, person, credential, certificate, picture of the room or of a client, and no price shown
   as confirmed, unless it is real and the studio gave it.
 - The reviews collection stays empty, and its page says so, until real reviews arrive with each client's
-  permission. Prices are in ₹ including GST and are estimates until the owner confirms each one.
+  permission. Prices are in ₹ and are the owner's own figures (11 Oct 2026); the site does not say whether they
+  include GST until she does.
 - A fact that is not known yet is left blank in `site.ts` (blank fields do not render) — never filled with a
-  plausible guess, and never left as Aura Blush's.
+  plausible guess.
+- **The founder, the city and the Instagram account are the owner's own** (Roshni Verma, Varanasi): they were
+  carried from the Aura Blush site on her say-so and stay until she replaces them.
 
 ## 7. Secrets and the booking channel
 - **Rule**: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` and `DISCORD_WEBHOOK_URL` come only from the environment

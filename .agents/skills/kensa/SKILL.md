@@ -46,14 +46,14 @@ Pass 1: Content & Schema ──▶ Pass 2: Booking Route & Secrets ──▶ Pas
 
 ### Pass 3: The 7 Site Rules
 1. **Facts**: no name, city or contact detail typed outside `src/data/site.ts`.
-2. **Claims**: no fairness, whitening or lightening promise, in any wording.
+2. **Claims**: no promise of fairer, lighter or whiter skin, and no skin-tone before-and-after picture.
 3. **Medical**: the patch-test and dermatologist-clearance sentences unchanged; `medical: true` kept.
 4. **Colour**: no category hex outside `src/data/categories.ts`.
 5. **Flight**: `scrub-engine.js` unedited; `<ScrollWorld />` first; leg ids and order unchanged.
 6. **Invention**: no review, person, credential, picture or confirmed price that the studio did not give.
 7. **Secrets**: none in source; no trace of the other studio's deployment.
 
-For phases 2 and 3, run the rebrand kata (`shiken`) and paste its output.
+Run the rebrand kata (`shiken`) and paste its output.
 
 ---
 

@@ -144,13 +144,12 @@ Run from the project root. `docs/`, `README.md` and the skills (`.agents/`, `.cl
 purpose and are left out.
 
 ```bash
-# after phase 2 — the name is gone
 grep -rIilE 'aura ?blush|aurablush' . \
-  --exclude-dir={node_modules,dist,.astro,.git,docs,.agents,.claude} --exclude=README.md
-
-# after phase 3 — the place and the people are gone too
-grep -rIilE 'aura ?blush|aurablush|varanasi|sigra|roshni|1leeja10|bhojpuri' . \
-  --exclude-dir={node_modules,dist,.astro,.git,docs,.agents,.claude} --exclude=README.md
+  --exclude-dir={node_modules,dist,.astro,.git,docs,.agents,.claude,.vercel} --exclude=README.md
 ```
 
-Both print nothing when the work is done.
+It prints nothing — true since phase 2.
+
+There was a second search, for the place and the people (`varanasi`, `sigra`, the founder's name and Instagram
+handle). It was retired on 11 Oct 2026: Precious Aesthetic Studio is Roshni Verma's own studio in Varanasi, so
+those are hers and stay. Sections 3 to 5 above were written before that was known; read them with it in mind.

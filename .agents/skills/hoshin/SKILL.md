@@ -67,7 +67,7 @@ One file: `docs/specs/P{{PHASE}}-{{SLUG}}.md`
 
 ## 5. Verify
 `npm run check && npm run build && npm test`
-(plus the grep of checklist §9 for phases 2 and 3)
+(plus the grep of checklist §9)
 ```
 
 A change of a line or two — a typo, one price the owner confirmed — needs no spec file: state the file, the
