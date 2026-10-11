@@ -7,8 +7,8 @@
  * belongs here.
  */
 export const site = {
-  name: 'Aura Blush',
-  legalName: 'Aura Blush Studio',
+  name: 'Precious Aesthetic',
+  legalName: 'Precious Aesthetic Studio',
   city: 'Varanasi',
 
   /**

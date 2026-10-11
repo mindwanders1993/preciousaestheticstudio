@@ -1,7 +1,9 @@
 # Deploying to Vercel
 
-The site is a **static build** — no server, no database, no API routes. That
-puts it comfortably inside Vercel's free Hobby tier.
+The pages are a **static build** with no database. There is one server route,
+`src/pages/api/contact.ts`, which the booking form posts to; it runs as a Vercel
+function through the `@astrojs/vercel` adapter and needs two secrets (below).
+All of it sits comfortably inside Vercel's free Hobby tier.
 
 | | |
 |---|---|
@@ -17,24 +19,29 @@ puts it comfortably inside Vercel's free Hobby tier.
 3. Accept the detected settings — `vercel.json` already pins them:
    - Build command `astro build`
    - Output directory `dist`
-4. **Deploy.** First build takes about a minute.
+4. **Settings → Environment Variables**: add `TELEGRAM_BOT_TOKEN` and
+   `TELEGRAM_CHAT_ID` — this studio's own bot and chat, never another studio's —
+   and, if a second destination is wanted, `DISCORD_WEBHOOK_URL`. `.env.example`
+   says how to get each. Without them the form answers with an error and no
+   booking is delivered.
+5. **Deploy.** First build takes about a minute.
 
 Every push to `main` redeploys automatically. Pull requests get their own
 preview URL, which is a good way to show her a change before it goes live.
 
 ## Custom domain
 
-`.in` domains are cheap (roughly ₹500–900/year) and Vercel does not charge to
-attach one.
+The domain is `preciousaestheticstudio.com`. Vercel does not charge to attach
+one.
 
-1. Buy the domain (BigRock, GoDaddy, Namecheap, Cloudflare).
+1. Register the domain (BigRock, GoDaddy, Namecheap, Cloudflare), if it is not
+   registered already.
 2. Vercel → Project → **Settings → Domains** → add it.
 3. Point the registrar's nameservers or records at Vercel as instructed.
 4. HTTPS is issued automatically and free.
 
-**Then update `astro.config.mjs`** — `site:` is currently
-`https://aurablush.in` and must match the real domain, or `sitemap-index.xml`
-will list wrong URLs.
+**`astro.config.mjs`** — `site:` is `https://preciousaestheticstudio.com`. It
+must match the live domain, or `sitemap-index.xml` will list wrong URLs.
 
 ## The free-tier caveat, honestly
 
@@ -44,16 +51,18 @@ Vercel's own guidance points such sites to the Pro plan (~$20/month).
 
 In practice a small site like this is very unlikely to attract attention, but
 it is their call, not ours. If it matters, the equally free alternatives with
-no commercial restriction are **Cloudflare Pages** and **Netlify**; both deploy
-this repo the same way, with no code changes.
+no commercial restriction are **Cloudflare Pages** and **Netlify**. Either
+needs one code change: its own Astro adapter in place of `@astrojs/vercel`, so
+that the booking route still runs.
 
 ## Before it goes live
 
 Not deployment blockers, but do not launch without them — see
 `HANDOFF-FOUNDER.md`:
 
-- [ ] **Remove the 8 placeholder reviews** — they are invented. Publishing them
-      is illegal advertising.
+- [ ] **Keep the reviews page empty** until there are real reviews, each given
+      with the client's permission. `src/content/reviews/` holds none now, and
+      an invented one is illegal advertising.
 - [ ] Replace `[FOUNDER NAME]` and the bracketed bio/credentials.
 - [ ] Real phone, WhatsApp, email, address in `src/data/site.ts`.
 - [ ] Confirm every price — the current ones are researched estimates.

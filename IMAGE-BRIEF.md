@@ -1,4 +1,4 @@
-# Image generation brief — Aura Blush Studio
+# Image generation brief — Precious Aesthetic Studio
 
 For generating the site's imagery elsewhere (Antigravity, Midjourney, etc.) and
 dropping the results back in.

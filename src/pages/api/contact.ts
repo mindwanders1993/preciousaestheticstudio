@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { site } from '../../data/site';
 
 export const prerender = false;
 
@@ -49,7 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (telegramBotToken && telegramChatId) {
       try {
         const telegramHtml =
-`🌸 <b>New Booking Request — Aura Blush Studio</b>
+`🌸 <b>New Booking Request — ${site.legalName}</b>
 
 👤 <b>Client:</b> ${escapeHtml(name)}
 📸 <b>Instagram:</b> ${escapeHtml(igHandle)}
@@ -92,10 +93,10 @@ ${escapeHtml(message || 'No additional notes')}
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            username: 'Aura Blush Inbound',
+            username: `${site.name} Inbound`,
             embeds: [
               {
-                title: '🌸 New Aura Blush Booking Request',
+                title: `🌸 New ${site.name} Booking Request`,
                 color: 14457498, // Rose accent (#dc789a)
                 fields: [
                   { name: '👤 Client Name', value: String(name), inline: true },
@@ -104,7 +105,7 @@ ${escapeHtml(message || 'No additional notes')}
                   { name: '✨ Treatment', value: String(service || 'General Consultation'), inline: true },
                   { name: '📝 Notes', value: String(message || 'None') }
                 ],
-                footer: { text: 'Aura Blush Studio Varanasi' },
+                footer: { text: `${site.legalName} ${site.city}` },
                 timestamp: new Date().toISOString()
               }
             ]
@@ -119,7 +120,7 @@ ${escapeHtml(message || 'No additional notes')}
 
     if (!dispatched) {
       console.warn('⚠️ No active webhook (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID) configured in environment.');
-      console.log('📥 [Aura Blush Inbound Booking]', {
+      console.log(`📥 [${site.name} Inbound Booking]`, {
         timestamp: new Date().toISOString(),
         name,
         email,

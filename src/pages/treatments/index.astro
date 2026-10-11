@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import TreatmentCard from '../../components/TreatmentCard.astro';
 import { getCollection } from 'astro:content';
 import { categories } from '../../data/categories';
+import { site } from '../../data/site';
 
 const allTreatments = await getCollection('treatments');
 const allFaqs = await getCollection('faqs');
@@ -33,7 +34,7 @@ const medicalCount = allTreatments.filter(t => t.data.medical).length;
 ---
 
 <Layout
-  title="Treatments | Aura Blush Studio"
+  title={`Treatments | ${site.legalName}`}
   description="The full menu — permanent makeup, collagen and glass-skin facials, pigmentation and brightening protocols, laser hair reduction and clinical lesion removal."
 >
   <header class="page-header">

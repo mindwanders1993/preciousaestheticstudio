@@ -41,8 +41,8 @@ const portfolio = [
 ---
 
 <Layout
-  title="Meet The Artist | Aura Blush Studio"
-  description={`${artist.data.name}, founder of Aura Blush Studio in Varanasi.`}
+  title={`Meet The Artist | ${site.legalName}`}
+  description={`${artist.data.name}, founder of ${site.legalName} in ${site.city}.`}
 >
   <header class="page-header">
     <span class="page-header__eyebrow">Who treats you</span>
@@ -90,7 +90,7 @@ const portfolio = [
               your medication and your skin — that is where a result is decided. The
               needle part is the easy bit.
             </p>            <p>
-              I opened Aura Blush in Sigra because getting careful work done here
+              I opened {site.name} in Sigra because getting careful work done here
               usually meant a train to Delhi or Lucknow. It shouldn't. The technique
               is not the hard part — knowing when a treatment is wrong for someone
               is, and that judgement does not require a bigger city.

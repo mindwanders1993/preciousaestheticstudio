@@ -7,26 +7,29 @@ Thirty-two files name the studio, its city, its locality or its founder. Fifteen
 
 ## 1. Identity and configuration
 
-- [ ] `package.json:2` — `"name": "aurablush"`
-- [ ] `package-lock.json` — the same name, twice; let `npm install` rewrite it
-- [ ] `astro.config.mjs:10` — `site: 'https://aurablush.in'` → the live domain (the sitemap is built from it)
-- [ ] `src/data/site.ts:10–11` — `name`, `legalName`
-- [ ] `src/styles/global.css:2` — the header comment
+*Sections 1 and 2 were done in phase 2 (11 Oct 2026, `docs/specs/P2-rename.md`). Line numbers below are the
+source's and no longer hold for the files that phase edited.*
+
+- [x] `package.json:2` — `"name": "aurablush"`
+- [x] `package-lock.json` — the same name, twice; let `npm install` rewrite it
+- [x] `astro.config.mjs:10` — `site: 'https://aurablush.in'` → the live domain (the sitemap is built from it)
+- [x] `src/data/site.ts:10–11` — `name`, `legalName`
+- [x] `src/styles/global.css:2` — the header comment
 
 ## 2. The name, typed into pages and components
 
 Replace each with a value read from `site.ts`, not with the new name typed again (plan §5).
 
-- [ ] `src/layouts/Layout.astro` — `:18` default title · `:80` the logo · `:104` footer heading · `:160` copyright
-- [ ] `src/pages/index.astro` — `:48` title · `:56` the screen-reader heading · `:119` "The Aura Blush Standard"
-- [ ] `src/pages/about.astro` — `:17` title · `:22` heading · `:34` picture's alt text · `:40` opening sentence
-- [ ] `src/pages/artist.astro` — `:44` title · `:45` description · `:93` the founder's quote
-- [ ] `src/pages/reviews.astro` — `:16` title · `:17` description · `:36` "Aura Blush is just opening…"
-- [ ] `src/pages/contact.astro` — `:31` title · `:32` description
-- [ ] `src/pages/treatments/index.astro:36` and `src/pages/treatments/[id].astro:37` — titles
-- [ ] `src/components/ScrollWorld.astro` — `:28` eyebrow · `:122` the flight's brand mark
-- [ ] `src/pages/api/contact.ts` — `:52` the Telegram message · `:95`, `:98`, `:107` the Discord message · `:122` the log line
-- [ ] `src/content/team/founder.md:6` — the bio
+- [x] `src/layouts/Layout.astro` — `:18` default title · `:80` the logo · `:104` footer heading · `:160` copyright
+- [x] `src/pages/index.astro` — `:48` title · `:56` the screen-reader heading · `:119` "The Aura Blush Standard"
+- [x] `src/pages/about.astro` — `:17` title · `:22` heading · `:34` picture's alt text · `:40` opening sentence
+- [x] `src/pages/artist.astro` — `:44` title · `:45` description · `:93` the founder's quote
+- [x] `src/pages/reviews.astro` — `:16` title · `:17` description · `:36` "Aura Blush is just opening…"
+- [x] `src/pages/contact.astro` — `:31` title · `:32` description
+- [x] `src/pages/treatments/index.astro:36` and `src/pages/treatments/[id].astro:37` — titles
+- [x] `src/components/ScrollWorld.astro` — `:28` eyebrow · `:122` the flight's brand mark
+- [x] `src/pages/api/contact.ts` — `:52` the Telegram message · `:95`, `:98`, `:107` the Discord message · `:122` the log line
+- [x] `src/content/team/founder.md:6` — the bio
 
 ## 3. Business facts and the place
 
@@ -104,7 +107,7 @@ The flight borrows `hero.jpg`, `studio.jpg` and several treatment pictures as it
 
 ## 6. The homepage flight
 
-- [ ] `world/HANDOFF.md:1`, `world/encode.sh:3` — headings only, in phase 2.
+- [x] `world/HANDOFF.md:1`, `world/encode.sh:3` — headings only, in phase 2.
 - [ ] `world/` holds twenty-seven files: for each of the six scenes a leg prompt and a still prompt, each in
       a desktop and a phone version, plus the style preamble, the handoff and the encode script. The prompts
       are written for the source's rooms. They are rewritten **only if** question 10 says the clips will be
@@ -118,9 +121,9 @@ The flight borrows `hero.jpg`, `studio.jpg` and several treatment pictures as it
       studio and keep every rule. The treatment count and the family list follow the menu.
 - [x] `.agents/skills/` — nothing to rename. The source's seven skills are not copied; this project's twelve
       (11 Oct 2026) were written for it. Where they name the source, they do so on purpose.
-- [ ] `AGENTS.md` — after the clone, add a short section naming the twelve skills, the order they run in and
+- [x] `AGENTS.md` — after the clone, add a short section naming the twelve skills, the order they run in and
       `kura`'s git rules (the table in `README.md`), and drop the source's mention of its own skills.
-- [ ] `DEPLOY.md` — `:36` the domain, and the two stale statements of plan §10.
+- [x] `DEPLOY.md` — `:36` the domain, and the two stale statements of plan §10.
 - [ ] `HANDOFF-FOUNDER.md` — an intake written for the source's founder. Rewrite it as this studio's; its
       questions feed `03-OPEN-QUESTIONS.md`.
 - [ ] `test/ci.test.js` — the list of expected pages names the ten treatment slugs.

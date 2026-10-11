@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================================
-# Aura Blush — kaiga asset pipeline (architecture A, continuous walkthrough)
+# Precious Aesthetic Studio — kaiga asset pipeline (architecture A, continuous walkthrough)
 #
 # Run with bash, never zsh: zsh arrays are 1-indexed and will silently chain the
 # wrong scene's frames (SKILL.md gotcha).

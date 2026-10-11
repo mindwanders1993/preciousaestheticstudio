@@ -21,6 +21,25 @@ Consult these guides before working on related tasks:
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
 
+## How work is done here
+
+Twelve skills in `.agents/skills/` (linked from `.claude/skills/`) carry the method. The order:
+`hoshin` (plan) → `takumi` (build) → `shiken` (test) → `kensa` (review) → `kura` (git) → `gemba` (acceptance) →
+`hansei` (reflect), with `muda` (sweep) and `dojo` (local environment) when needed. Three guardrails load with
+them: `invariants` (the seven site rules), `contracts-first` (schema before pages) and `migration-bridge` (what
+came from the source site and what never does).
+
+The three gates, in order: `npm run check`, `npm run build`, `npm test`.
+
+Git rules — `kura` has them in full:
+
+- The owner says yes before each branch, each commit and each pull request.
+- No AI attribution in any commit or pull request: no `Co-Authored-By`, no "Generated with" line.
+- `main` moves only by pull request; the owner merges on GitHub. No force-push, no `--no-verify`.
+- Paths are staged by name; never `git add .`.
+
+The plan, the rebrand checklist and the open questions about the studio are in `docs/`.
+
 ## Business details
 
 The studio operates in **Varanasi**, serving domestic and visiting clients. Name,
@@ -35,9 +54,12 @@ Two content rules that are legal, not stylistic:
   of skin" is restricted under the Drugs and Magic Remedies Act and ASCI's code.
   The Japanese treatment is named *Brightening* and its page says plainly that we
   do not offer whitening. Don't let this drift back.
-- **Mole removal and laser run under a consulting dermatologist** (Dr. Aparna
-  Mishra, in the `team` collection). She clears every pigmented lesion before it
-  is removed. The clinical menu depends on that arrangement being real.
+- **Mole removal and laser are written as running under a consulting
+  dermatologist**, who clears every pigmented lesion before it is removed. Nobody
+  is named: the `team` collection holds the founder only, and the arrangement is
+  asserted in the copy. The clinical menu depends on that arrangement being real
+  — if this studio has none, the two treatments go (`docs/03-OPEN-QUESTIONS.md`,
+  question 6).
 
 Laser copy leads with **Nd:YAG 1064nm** because most clients are Fitzpatrick IV–V;
 the diode is the second half of the course, not the opener. Session counts (8–10)

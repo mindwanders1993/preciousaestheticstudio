@@ -5,6 +5,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import TreatmentCard from '../components/TreatmentCard.astro';
 import { getCollection } from 'astro:content';
 import { categories } from '../data/categories';
+import { site } from '../data/site';
 
 const allTreatments = await getCollection('treatments');
 
@@ -45,7 +46,7 @@ const standards = [
 ---
 
 <Layout
-  title="Aura Blush Studio | Permanent Makeup, Skin & Laser in Varanasi"
+  title={`${site.legalName} | Permanent Makeup, Skin & Laser in ${site.city}`}
   description="Permanent makeup, collagen and glass-skin facials, pigmentation protocols and Nd:YAG laser — built for Indian skin, in Sigra, Varanasi."
   immersive
 >
@@ -53,7 +54,7 @@ const standards = [
        the document would otherwise have no <h1>. This supplies one for screen
        readers and search without competing with the flight's own typography. -->
   <h1 class="sr-only">
-    Aura Blush Studio — permanent makeup, skin and laser treatments in Sigra, Varanasi
+    {site.legalName} — permanent makeup, skin and laser treatments in {site.address.line2}
   </h1>
 
   <!-- The camera flight. Must be the first thing in the document: the scroll
@@ -116,7 +117,7 @@ const standards = [
       <div class="container">
         <div class="standard-grid">
           <div>
-            <SectionHeading title="The Aura Blush Standard" subtitle="Why Choose Us" alignment="left" />
+            <SectionHeading title={`The ${site.name} Standard`} subtitle="Why Choose Us" alignment="left" />
             <p class="standard-lede">
               Half of what we do leaves a mark on your face and the other half changes how
               your skin behaves for months. We treat both that way — medical-grade hygiene

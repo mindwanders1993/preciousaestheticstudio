@@ -1,4 +1,4 @@
-# Aura Blush — camera flight render handoff
+# Precious Aesthetic Studio — camera flight render handoff
 
 The homepage flight is **wired and live** with placeholder stills. This document is the
 contract for replacing them with the real film. Nothing in `src/` changes when the assets
