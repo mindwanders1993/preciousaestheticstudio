@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../data/site';
+import { BOOK_LABEL, messageLink } from '../lib/contact';
+import { faqSchema } from '../lib/structured-data';
+
+/**
+ * What a first visit is like, for someone who has never been to a studio like this. A new studio has no
+ * reviews to reassure her with; a plain, truthful walkthrough is the next best thing
+ * (docs/specs/P9-first-customer.md). Every line here is a commitment the site already makes elsewhere.
+ */
+const faqs = (await getCollection('faqs'))
+  .filter(f => f.data.category === 'general')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const message = messageLink();
+
+const steps = [
+  {
+    title: 'You message us',
+    body: `On WhatsApp or Instagram, or through the form. Tell us what you are thinking about — brows, lips, skin, laser — and anything you are unsure of. We reply within 24 hours with an honest answer and a time for a consultation.`,
+  },
+  {
+    title: 'The consultation — free, about twenty minutes',
+    body: 'We look at your skin in daylight, ask about your medication and your health, and talk through what suits you and what does not. If a treatment is a bad idea for you, we say so. You hear the price and what it includes before anything is booked. No obligation.',
+  },
+  {
+    title: 'For laser: a patch test first',
+    body: 'A small test area 24–48 hours before the first session, so the settings are chosen from your skin and not from an average. For mole removal, a dermatologist\'s written clearance comes first. These steps are never skipped.',
+  },
+  {
+    title: 'The treatment',
+    body: 'Every needle, blade and laser tip is opened in front of you and goes into sharps afterwards. Permanent makeup starts with mapping and a pigment match you sign off on before anything is opened. Numbing is used where it helps.',
+  },
+  {
+    title: 'Aftercare, written down',
+    body: 'You leave with instructions for the days that matter, and sunscreen advice for this climate. Permanent makeup includes a perfecting visit at 6–8 weeks. If anything worries you afterwards, you message the studio and hear back.',
+  },
+];
+
+const bring = [
+  'Photos of what you like — and of what you don\'t',
+  'A list of every medication and supplement you take',
+  'Your dates, if you are visiting Varanasi: some treatments do not fit a short trip',
+  'Nothing else. You pay at the studio, after the consultation, only if you go ahead',
+];
+
+const jsonLd = [faqSchema(faqs)];
+---
+
+<Layout
+  title={`Your first visit | ${site.legalName}`}
+  description={`What happens at a first visit to ${site.legalName}: the free consultation, the patch test, the treatment and the aftercare — and the questions people ask before booking.`}
+  jsonLd={jsonLd}
+>
+  <header class="page-header">
+    <span class="page-header__eyebrow">How it works</span>
+    <h1>Your first visit</h1>
+    <div class="page-header__rule"></div>
+    <p class="page-header__lede">
+      Never been to a studio like this? Here is exactly what happens, from your first message to the
+      day after your treatment.
+    </p>
+  </header>
+
+  <section class="section">
+    <div class="container narrow">
+      <ol class="visit-steps">
+        {steps.map((step, i) => (
+          <li>
+            <span class="visit-num">{i + 1}</span>
+            <div>
+              <h2>{step.title}</h2>
+              <p>{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section bg-offset">
+    <div class="container narrow">
+      <SectionHeading title="What to bring" subtitle="Before you come" alignment="left" />
+      <ul class="accent-list">
+        {bring.map(item => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <SectionHeading title="Questions people ask before booking" subtitle="Good to know" alignment="left" />
+      <div class="faq-list">
+        {faqs.map(faq => (
+          <details class="faq-item">
+            <summary>{faq.data.question}</summary>
+            <p class="faq-item__answer">{faq.data.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface">
+    <div class="container narrow closing">
+      <h2>Start with a message.</h2>
+      <p class="text-muted">The consultation is free. There is nothing to decide today.</p>
+      <div class="closing-actions">
+        <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
+        <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .narrow { max-width: 760px; }
+
+  .visit-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .visit-steps li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .visit-steps li:last-child { border-bottom: 0; }
+
+  .visit-num {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    font-weight: 600;
+  }
+
+  .visit-steps h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .visit-steps p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .faq-list { display: grid; gap: 0.5rem; }
+
+  .faq-item {
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    padding: 0 1.25rem;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    padding: 1rem 0;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary::after {
+    content: '+';
+    color: var(--color-accent);
+    font-family: var(--font-body);
+  }
+
+  .faq-item[open] summary::after { content: '–'; }
+
+  .faq-item__answer {
+    margin: 0 0 1.1rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .closing { text-align: center; }
+
+  .closing h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+</style>

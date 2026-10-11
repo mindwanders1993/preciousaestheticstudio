@@ -38,9 +38,9 @@ phone: when time is short, the phone walk is the one that is not skipped.
    - The logo shows the name from `site.ts` and returns to `/`.
    - Every header link lands on its page; the current page is marked.
    - The header's booking button goes to `/contact`.
-   - On the homepage the header stays hidden during the flight and slides in after it.
-3. **J-03: The homepage flight** (rule 5)
-   - The flight is the first thing on the page, with no gap above it.
+   - On `/studio` the header stays hidden during the flight and slides in after it.
+3. **J-03: The flight on `/studio`** (rule 5)
+   - The flight is the first thing on that page, with no gap above it; the homepage opens on the offer and prices.
    - Scrolling moves through all six scenes in order; each shows its eyebrow, title, body and tags.
    - The last scene shows the booking button and the link to the menu.
    - The sections after the flight cover it completely.

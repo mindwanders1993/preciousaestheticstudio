@@ -10,21 +10,21 @@ const treatments = await getCollection('treatments');
 const stats = [
   { number: `${treatments.length}`, label: 'Treatments offered' },
   { number: '4',    label: 'Service families' },
-  { number: '100%', label: 'Disposable tools' },
+  { number: '1', label: 'Artist, start to finish' },
 ];
 ---
 
 <Layout
-  title={`Our Story | ${site.legalName}`}
-  description="How a permanent-makeup studio in Varanasi became a skin and laser studio too — and the standards that had to come with it."
+  title={`The studio | ${site.legalName}`}
+  description={`${site.legalName} is a new permanent-makeup, skin and laser studio in ${site.city}, run by one artist — and the standards it opens with.`}
 >
   <header class="page-header">
-    <span class="page-header__eyebrow">About Us</span>
-    <h1>The {site.name} Story</h1>
+    <span class="page-header__eyebrow">About the studio</span>
+    <h1>New in {site.city}, with standards from day one.</h1>
     <div class="page-header__rule"></div>
     <p class="page-header__lede">
-      How a permanent-makeup studio in Varanasi became a skin and laser studio too — and the
-      standards that had to come with it.
+      {site.legalName} is a permanent-makeup, skin and laser studio in {site.address.line2}, run by
+      one artist, Roshni Verma. It is new — so instead of a history, here is what it promises.
     </p>
   </header>
 
@@ -36,26 +36,23 @@ const stats = [
         </div>
 
         <div class="about-content">
-          <SectionHeading title="From pigment to skin" subtitle="Our Philosophy" alignment="left" />
+          <SectionHeading title="What the studio is for" subtitle="The idea" alignment="left" />
           <p>
-            {site.name} was founded in Sigra to close a gap this city had: high-end cosmetic
-            work you did not have to travel to Delhi or Lucknow for. Permanent makeup shouldn't
-            look like a tattoo — it should look like makeup applied by someone who knows your
-            face, that simply never washes off.
+            Permanent makeup shouldn't look like a tattoo — it should look like makeup applied by
+            someone who knows your face, that simply never washes off. Skin treatments should change
+            how your skin behaves over months, not how it looks for an afternoon. That is the whole
+            idea, and every treatment on the menu is judged against it.
           </p>
           <p>
-            Our philosophy is rooted in <strong>subtle enhancement</strong>. We don't work from
-            one-size-fits-all stencils. Every set of brows and lips is custom-mapped to your
-            bone structure and your natural asymmetry — because faces aren't symmetrical, and
-            results that pretend otherwise are the ones that look done.
+            Our philosophy is <strong>subtle enhancement</strong>. We don't work from one-size-fits-all
+            stencils. Every set of brows and lips is mapped to your bone structure and your natural
+            asymmetry — because faces aren't symmetrical, and results that pretend otherwise are the
+            ones that look done.
           </p>
           <p>
-            The menu grew because our clients kept asking the same follow-up question. Brows
-            and lips solve one thing; they don't touch texture, tone or the pigmentation that
-            was bothering someone long before they booked. So the menu grew into four families
-            of treatment — <strong>and the screening that has to come with them</strong>.
-            Patch tests before laser. Dermatology clearance before any mole. Topicals and
-            peels before we will point a device at melasma.
+            Four families of treatment — <strong>and the screening that has to come with them</strong>.
+            Patch tests before laser. Dermatology clearance before any mole. A free consultation
+            before anything at all.
           </p>
 
           <div class="stats-grid">
@@ -75,13 +72,21 @@ const stats = [
     <div class="container values">
       <SectionHeading title="What we won't compromise on" subtitle="Standards" />
       <ul class="accent-list values-list">
-        <li><strong>Sterility.</strong> Single-use needles, blades and laser tips, opened in front of you, autoclaved workstation, sharps disposal on site.</li>
+        <li><strong>Sterility.</strong> Single-use needles, blades and laser tips, opened in front of you, and sharps disposal on site.</li>
         <li><strong>Honesty.</strong> If your skin, medication or expectations make a treatment a bad idea, we say so and don't take the booking.</li>
-        <li><strong>Scope.</strong> One artist working strictly inside what she is certified for. Anything that needs a doctor is referred to one — we don't improvise near a diagnosis.</li>
-        <li><strong>Evidence over speed.</strong> The faster option is often the one that causes rebound pigmentation. We treat in the order the literature supports, even when it costs us the sale.</li>
-        <li><strong>Patience.</strong> Mapping takes as long as it takes, and a collagen course takes the months it takes. Nothing here is sold as a single-visit fix that isn't one.</li>
-        <li><strong>Aftercare.</strong> Every client leaves with written instructions, sunscreen that suits this climate, and a WhatsApp line for the days that matter most.</li>
+        <li><strong>Scope.</strong> One artist working strictly inside what she is trained for. Anything that needs a doctor is referred to one — we don't improvise near a diagnosis.</li>
+        <li><strong>Evidence over speed.</strong> The faster option is often the one that causes rebound pigmentation. We treat in the order the evidence supports, even when it costs us the sale.</li>
+        <li><strong>Patience.</strong> Mapping takes as long as it takes, and a skin course takes the months it takes. Nothing here is sold as a single-visit fix that isn't one.</li>
+        <li><strong>Aftercare.</strong> Every client leaves with written instructions, and a way to reach the studio for the days that matter most.</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta">
+      <h2>Come and see for yourself.</h2>
+      <p class="text-muted">The first consultation is free, and you can <a href="/studio">take a look around</a> first.</p>
+      <a href="/contact" class="btn-primary">Book a free consultation</a>
     </div>
   </section>
 </Layout>
@@ -176,4 +181,7 @@ const stats = [
     color: var(--color-text);
     font-weight: 500;
   }
+  .cta { text-align: center; max-width: 36rem; }
+  .cta h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 0.75rem; }
+  .cta p { margin-bottom: 1.5rem; }
 </style>

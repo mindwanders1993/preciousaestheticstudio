@@ -1,10 +1,10 @@
 # Precious Aesthetic Studio — website
 
-**Status: ready to be shown, not launched.** The site shows Roshni Verma's twelve treatments and prices, lists
-every price on the homepage, keeps a booking button within reach on a phone, and describes itself to search
-engines and AI agents. Until `launched` in `src/data/site.ts` is set to `true`, every page asks not to be
-indexed. Pictures are generated illustrations (`docs/IMAGE-SOURCES.md`), several pages are short on purpose,
-and nothing is deployed yet.
+**Status: built to win the first customer; not launched.** The homepage opens on a free consultation, every
+price and a trust strip in English and Hindi; every button leads to a message (WhatsApp the moment her number
+is in); `/first-visit` and `/prices` are single links to share. Until `launched` in `src/data/site.ts` is set
+to `true`, every page asks not to be indexed. Pictures are generated illustrations, and the owner's answers
+in `docs/04-FOR-ROSHNI.md` are still open.
 
 This project is a full clone of the Aura Blush site (`~/Desktop/Projects/aurablush`), rebranded and
 re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudio.com`.

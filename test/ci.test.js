@@ -48,6 +48,10 @@ const expectedPages = [
   'about/index.html',
   'reviews/index.html',
   'contact/index.html',
+  'prices/index.html',
+  'first-visit/index.html',
+  'studio/index.html',
+  '404.html',
   'sitemap-index.xml',
   'robots.txt',
   'llms.txt',
@@ -99,6 +103,8 @@ it('Laser Hair Removal mandates Nd:YAG 1064nm and patch test', () => {
 console.log('\n--- 3. Category Tokens & Engine Integrity ---');
 it('Layout HTML emits all 4 category custom properties (--cat-*)', () => {
   const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
+  const studioHtml = fs.readFileSync(path.join(distDir, 'studio/index.html'), 'utf8');
+  assert(studioHtml.includes('scrub-engine.js'), 'the flight is no longer on /studio');
   assert(indexHtml.includes('--cat-pmu:'), 'PMU category token missing');
   assert(indexHtml.includes('--cat-skin:'), 'Skin category token missing');
   assert(indexHtml.includes('--cat-pigment:'), 'Pigment category token missing');

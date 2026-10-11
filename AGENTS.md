@@ -58,6 +58,12 @@ and `Disallow: /` in `/robots.txt`, so a deployment can be shown to the owner wi
 remove either by hand: launching is changing that one value to `true`, in a pull request, after the launch list
 in `docs/01-CLONE-PLAN.md` §8. `test/ci.test.js` fails if the pages and `robots.txt` disagree with the switch.
 
+**The homepage sells the first message** (12 Oct 2026, `docs/specs/P9-first-customer.md`): the offer (a free
+consultation), the prices, a trust strip with Hindi lines, how a first visit works, then the treatments. Every
+"message us" button comes from `src/lib/contact.ts`: WhatsApp with a prefilled text once `site.whatsapp` is
+filled in, Instagram until then. `/prices` and `/first-visit` exist to be shared as single links. "Reviews"
+is out of the navigation until there are real reviews.
+
 The homepage price list is `src/components/PriceList.astro`. The phone booking bar is in `Layout.astro`; a page
 passes `bookHref` to send its booking buttons to `/contact?treatment=<slug>`, which opens the form with that
 treatment chosen.
@@ -116,9 +122,9 @@ for category ids, labels, copy and colour.
   the fallback for any treatment without an `image`, drawing a per-family SVG
   motif tinted from `--cat`.
 
-## The homepage camera flight
+## The camera flight (`/studio`)
 
-The homepage is a scroll-scrubbed camera walkthrough built with the
+`/studio` is a scroll-scrubbed camera walkthrough built with the
 [kaiga](https://github.com/) skill (installed at `~/.claude/skills/kaiga`).
 
 - Engine: `public/world/scrub-engine.js` — vendored verbatim, **do not port it into a
@@ -133,6 +139,6 @@ The homepage is a scroll-scrubbed camera walkthrough built with the
   needed to render and drop them in is in `world/HANDOFF.md` (prompts, spec table,
   `bash world/encode.sh`).
 
-The flight must stay the first element on the homepage — the engine reads `window.scrollY`
+The flight must stay the first element on its page — the engine reads `window.scrollY`
 absolutely — and anything after it needs `position: relative; z-index: 30` over an opaque
 background, since the engine's stage is `position: fixed` for the life of the page.

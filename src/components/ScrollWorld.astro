@@ -14,7 +14,12 @@
 import { getCollection } from 'astro:content';
 import { site } from '../data/site';
 
-const treatmentCount = (await getCollection('treatments')).length;
+const treatments = await getCollection('treatments');
+const treatmentCount = treatments.length;
+const tagFor = (id: string) => {
+  const t = treatments.find(x => x.id === id);
+  return t ? [t.data.price, t.data.duration] : [];
+};
 
 const scenes = [
   {
@@ -62,7 +67,7 @@ const scenes = [
     eyebrow: "The part you don't see",
     title: 'Everything single-use. Every time.',
     body: 'Needles, blades and laser tips come out of a sealed pouch in front of you and go straight into sharps. Nothing is ever reused, and nothing is done outside its certified scope — a dermatologist sees your skin before anything clinical happens to it.',
-    tags: ['100% disposable', 'Vegan pigments', 'Laser certified'],
+    tags: ['100% disposable', 'Opened in front of you', 'Sharps on site'],
   },
   {
     id: 'brows',
@@ -74,10 +79,10 @@ const scenes = [
     // clipMobile: '/world/vid/brows-m.mp4',
     // stillMobile: '/world/brows-m.jpg',
     accent: '#bc5d66',
-    eyebrow: 'Nano Microblading',
+    eyebrow: 'Microblading',
     title: 'Strokes, not strips.',
     body: 'Hyper-fine hair strokes laid in the direction your own brow already grows, so the shape reads as growth rather than makeup.',
-    tags: ['₹12,000', '2 hrs', 'Heals in 10 days'],
+    tags: [...tagFor('microblading'), 'Heals in 10 days'],
   },
   {
     id: 'lips',
@@ -89,10 +94,10 @@ const scenes = [
     // clipMobile: '/world/vid/lips-m.mp4',
     // stillMobile: '/world/lips-m.jpg',
     accent: '#cf7a8a',
-    eyebrow: 'Lip Blush',
+    eyebrow: 'Lip Blushing',
     title: 'Your colour, only truer.',
     body: 'A soft wash of tint that restores the border and brings back the colour lips lose with age — never a drawn-on line.',
-    tags: ['₹14,000', '2 hrs', 'Lasts 2 years'],
+    tags: [...tagFor('lip-blush'), 'Lasts 2 years'],
   },
   {
     id: 'reveal',
