@@ -53,6 +53,8 @@ On a preview address, absolute links (the social-preview picture, the canonical 
 `/llms.txt`) point at `preciousaestheticstudio.com`, which is not live yet. A link shared on WhatsApp will
 therefore show its title and description but may show no picture. To be checked on the real preview first.
 
+*Checked on 12 Oct 2026 and fixed: `docs/specs/P8-preview-fixes.md`.*
+
 ## 5. Done when — and what was seen (11 Oct 2026)
 
 | State | `robots.txt` | Pages | `npm test` |

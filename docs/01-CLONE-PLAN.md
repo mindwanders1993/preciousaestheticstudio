@@ -130,7 +130,8 @@ launch switch.
       pages — and corrected it.
 - [ ] The reviews page still empty unless real reviews, given with permission, are in.
 - [ ] Booking requests go to this studio's own chat: one sent from the deployed site is seen to arrive.
-- [ ] `site:` in `astro.config.mjs` matches the live domain, so the sitemap lists the right addresses.
+- [ ] The sitemap lists the live domain. On Vercel `site` follows the project's domain by itself
+      (`docs/specs/P8-preview-fixes.md`); after the domain is attached, redeploy and look at `/sitemap-index.xml`.
 - [ ] **Last: `launched: true` in `src/data/site.ts`, by pull request.** Until then every page is marked
       not-to-be-indexed and `robots.txt` keeps crawlers out (`docs/specs/P7-not-launched.md`).
 

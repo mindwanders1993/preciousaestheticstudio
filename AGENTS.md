@@ -49,6 +49,10 @@ and the collections — `/robots.txt`, `/llms.txt` (a plain-text map of the site
 content and all of them follow. Structured data states only what the page shows — no rating, no review, no
 opening hours until the owner confirms them; `test/ci.test.js` holds that.
 
+`site` in `astro.config.mjs` — the address every absolute link is built from — follows Vercel's
+`VERCEL_PROJECT_PRODUCTION_URL` when a build has it, and is the studio's own domain otherwise. The booking
+route answers with an error, never with "received", when no destination accepted the request.
+
 **The site is not launched.** `launched: false` in `src/data/site.ts` puts `noindex, nofollow` on every page
 and `Disallow: /` in `/robots.txt`, so a deployment can be shown to the owner without being indexed. Do not
 remove either by hand: launching is changing that one value to `true`, in a pull request, after the launch list

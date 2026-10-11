@@ -119,8 +119,11 @@ ${escapeHtml(message || 'No additional notes')}
     }
 
     if (!dispatched) {
-      console.warn('⚠️ No active webhook (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID) configured in environment.');
-      console.log(`📥 [${site.name} Inbound Booking]`, {
+      // Nobody received this request: no destination is configured (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID),
+      // or every destination refused it. Say so. A form that answers "received" while the request goes
+      // nowhere loses the booking without anyone knowing (docs/specs/P8-preview-fixes.md).
+      console.warn('⚠️ Booking request NOT delivered: no destination is configured, or every one of them failed.');
+      console.log(`📥 [${site.name} Inbound Booking — undelivered]`, {
         timestamp: new Date().toISOString(),
         name,
         email,
@@ -128,6 +131,17 @@ ${escapeHtml(message || 'No additional notes')}
         service,
         message
       });
+
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: `We could not send your request just now. Please message us on Instagram (${site.social.instagram.handle}) instead.`
+        }),
+        {
+          status: 503,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
     }
 
     return new Response(
