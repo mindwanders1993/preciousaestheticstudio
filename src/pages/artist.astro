@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../data/site';
 
@@ -32,12 +31,9 @@ const credentials = [
   'Single-use sterile protocol on every treatment',
 ];
 
-// The clinical half of the menu is not the founder's scope, and saying so is
-// the point of this block.
-const portfolio = [
-  { image: '/images/microblading.jpg', title: 'Healed nano brows', note: 'Hyper-realistic hair strokes' },
-  { image: '/images/lip-blush.jpg',    title: 'Healed lip blush',  note: 'Soft dusty rose tint' },
-];
+// No portfolio section yet. It returns when there are photographs of Roshni's own healed work, each shown
+// with the client's permission. A generated or stock picture is never captioned as her result (site rule 6,
+// docs/specs/P4-pictures.md).
 ---
 
 <Layout
@@ -127,23 +123,6 @@ const portfolio = [
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <SectionHeading title="Signature Portfolio" subtitle="PMU Work" />
-
-      <div class="portfolio-grid">
-        {portfolio.map(item => (
-          <figure class="portfolio-item">
-            <img src={item.image} alt={item.title} class="portfolio-img" loading="lazy" />
-            <figcaption>
-              <h4>{item.title}</h4>
-              <p class="text-muted">{item.note}</p>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
 </Layout>
 
 <style>
@@ -344,47 +323,5 @@ const portfolio = [
     flex-wrap: wrap;
     gap: 0.9rem;
     margin-top: 0.5rem;
-  }
-
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .portfolio-grid {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 420px));
-      justify-content: center;
-    }
-  }
-
-  .portfolio-item {
-    margin: 0;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background-color: var(--color-surface);
-    box-shadow: var(--shadow-card);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .portfolio-img {
-    width: 100%;
-    height: 340px;
-    object-fit: cover;
-  }
-
-  .portfolio-item figcaption {
-    padding: 1.5rem;
-  }
-
-  .portfolio-item h4 {
-    margin-bottom: 0.35rem;
-  }
-
-  .portfolio-item p {
-    margin: 0;
-    font-size: 0.9rem;
   }
 </style>

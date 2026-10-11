@@ -104,10 +104,13 @@ for category ids, labels, copy and colour.
   needs a patch test 24–48h ahead, and no pigmented lesion is removed without a
   dermatologist's written clearance, because radiofrequency destroys the tissue
   a pathologist would need. Don't soften that copy into marketing.
-- Eight of the twelve treatments carry photography in `public/images/<slug>.jpg`
-  (1024x1024, sourced from Pexels — free for commercial use, no attribution
-  required). `TreatmentArt.astro` remains the fallback for any treatment added
-  without an `image`, drawing a per-family SVG motif tinted from `--cat`.
+- Eleven of the twelve treatments carry a picture in `public/images/<slug>.jpg`
+  (1024x1024), generated to the house style of `IMAGE-BRIEF.md`. Where each one
+  came from is recorded in `docs/IMAGE-SOURCES.md`, and a test fails if a picture
+  has no row there. They illustrate a treatment; none is captioned as the
+  studio's own result. `PPET Treatment` has none yet: `TreatmentArt.astro` remains
+  the fallback for any treatment without an `image`, drawing a per-family SVG
+  motif tinted from `--cat`.
 
 ## The homepage camera flight
 

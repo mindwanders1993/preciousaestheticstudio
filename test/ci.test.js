@@ -154,6 +154,22 @@ it('no structured data states a rating, a review or opening hours (site rule 6)'
   assert(!/aggregateRating|"review"|openingHours/i.test(text), 'unconfirmed facts in structured data');
 });
 
+console.log('\n--- 3d. Pictures (docs/IMAGE-SOURCES.md) ---');
+it('every picture a treatment names exists', () => {
+  for (const file of treatmentFiles) {
+    const image = fs.readFileSync(path.join(treatmentsDir, file), 'utf8').match(/^image:\s*"([^"]+)"/m)?.[1];
+    if (image) assert(fs.existsSync(path.resolve('public', image.replace(/^\//, ''))), `${file}: ${image} is missing`);
+  }
+});
+
+it('every picture in public/images has its origin recorded', () => {
+  const sources = fs.readFileSync(path.resolve('docs/IMAGE-SOURCES.md'), 'utf8');
+  for (const file of fs.readdirSync(path.resolve('public/images'))) {
+    if (file.startsWith('.')) continue;
+    assert(sources.includes('`' + file + '`'), `${file} has no row in docs/IMAGE-SOURCES.md`);
+  }
+});
+
 console.log('\n--- 3c. Launch Switch (docs/specs/P7-not-launched.md) ---');
 // `launched` in src/data/site.ts decides whether the site may be indexed. The pages and robots.txt must
 // both follow it — one saying "stay out" while the other says "come in" is the failure this guards.

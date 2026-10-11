@@ -1,9 +1,10 @@
 # Precious Aesthetic Studio — website
 
-**Status: the owner's menu is in and the site has moved past a plain clone.** It shows Roshni Verma's twelve
-treatments and prices, lists every price on the homepage, keeps a booking button within reach on a phone, and
-describes itself to search engines and AI agents (`/llms.txt`, `/treatments.json`, structured data). Pictures
-are stock, several pages are short on purpose, and nothing here is deployed.
+**Status: ready to be shown, not launched.** The site shows Roshni Verma's twelve treatments and prices, lists
+every price on the homepage, keeps a booking button within reach on a phone, and describes itself to search
+engines and AI agents. Until `launched` in `src/data/site.ts` is set to `true`, every page asks not to be
+indexed. Pictures are generated illustrations (`docs/IMAGE-SOURCES.md`), several pages are short on purpose,
+and nothing is deployed yet.
 
 This project is a full clone of the Aura Blush site (`~/Desktop/Projects/aurablush`), rebranded and
 re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudio.com`.
@@ -22,6 +23,7 @@ re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudi
 | [`docs/02-REBRAND-CHECKLIST.md`](docs/02-REBRAND-CHECKLIST.md) | Every file and line in the source that names Aura Blush, its city or its founder |
 | [`docs/03-OPEN-QUESTIONS.md`](docs/03-OPEN-QUESTIONS.md) | What has to be answered about the studio, and what is assumed until it is |
 | [`docs/04-FOR-ROSHNI.md`](docs/04-FOR-ROSHNI.md) | What the owner is asked to confirm when she sees the preview |
+| [`docs/IMAGE-SOURCES.md`](docs/IMAGE-SOURCES.md) | Where every picture comes from, and the ones that were turned down |
 | [`docs/specs/`](docs/specs/) | One short spec per piece of work, approved before it is built |
 
 ## Skills
@@ -54,8 +56,8 @@ setting).
 
 ## Next step
 
-Pictures for the four new treatments, then a Vercel preview to show Roshni and her answers to
-`docs/04-FOR-ROSHNI.md`.
+A Vercel deployment to show Roshni (`DEPLOY.md`), a Telegram bot and chat for booking requests, then her
+answers to `docs/04-FOR-ROSHNI.md`.
 
 ```bash
 npm ci

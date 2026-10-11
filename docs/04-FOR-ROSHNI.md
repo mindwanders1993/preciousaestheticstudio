@@ -36,9 +36,15 @@ Answers go at the bottom with their date.
 
 8. Studio address and a landmark, opening hours, languages you speak with clients.
 9. Phone, WhatsApp, email, and the Instagram account the studio will use.
-10. Your own photographs: you, the room, and your work — before and after, with each client's permission. The
-    pictures on the preview are stock.
-11. The Telegram chat that should receive booking requests.
+10. The Telegram chat that should receive booking requests.
+
+## Later, when you have them
+
+11. Your own photographs: the room, and your work — with each client's permission. Nothing is needed now. The
+    pictures on the site were made for it as illustrations (`docs/IMAGE-SOURCES.md`); none shows a real client,
+    and the site says so. The ten example pictures you sent could not be used — each belongs to another
+    business — but they showed what you mean by each treatment. A portfolio of your healed work goes on the
+    Artist page when there is one.
 
 ## Answers
 
