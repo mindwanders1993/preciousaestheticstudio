@@ -1,14 +1,15 @@
 # Precious Aesthetic Studio — website
 
-**Status: planning. There is no code here yet.**
+**Status: phase 1 — cloned from Aura Blush, not yet rebranded.** The site still names Aura Blush everywhere;
+nothing here is deployed.
 
-This project will be a full clone of the Aura Blush site (`~/Desktop/Projects/aurablush`), rebranded and
+This project is a full clone of the Aura Blush site (`~/Desktop/Projects/aurablush`), rebranded and
 re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudio.com`.
 
 | | |
 |---|---|
-| Source | `aurablush` at commit `79e3acc` (1 Sep 2026), plus five uncommitted files there — see plan §2 |
-| Stack once cloned | Astro 7, MDX, sitemap, the Vercel adapter, Node ≥ 22.12 |
+| Source | `aurablush` at commit `5a2aef2` (11 Oct 2026) — see plan §2 |
+| Stack | Astro 7, MDX, sitemap, the Vercel adapter, Node ≥ 22.12 |
 | Planned on | 10 Oct 2026 |
 
 ## Planning docs
@@ -49,7 +50,10 @@ setting).
 
 ## Next step
 
-Answer questions 1–3 in `docs/03-OPEN-QUESTIONS.md` — they decide whether this is a clone at all and what
-the clone starts from. Then run phase 1 of the plan.
+Phase 2 of the plan — the rename: the name, the domain and every hard-coded brand string, read from
+`src/data/site.ts`. Questions 4–8 in `docs/03-OPEN-QUESTIONS.md` block phase 3.
 
-When the clone is made, this file replaces the source's `README.md`, which is still the Astro starter text.
+```bash
+npm ci
+npm run check && npm run build && npm test
+```

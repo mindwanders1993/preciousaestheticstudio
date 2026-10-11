@@ -13,13 +13,11 @@ channel.
 | | |
 |---|---|
 | Path | `~/Desktop/Projects/aurablush` |
-| Commit | `79e3acc` on `main`, 1 Sep 2026 |
-| Uncommitted there | Five files, eleven lines: the scroll engine renamed from `lets-scroll` to `kaiga` (`.gitignore`, `AGENTS.md`, `public/world/scrub-engine.js`, `src/components/ScrollWorld.astro`, `world/encode.sh`) |
+| Commit | `5a2aef2` on `main`, 11 Oct 2026 — `79e3acc` (1 Sep 2026) plus the scroll engine's rename from `lets-scroll` to `kaiga`, five files and eleven lines |
 | Remote | `github.com/mindwanders1993/aurablush` |
 
-**Commit the rename in aurablush first**, then clone from that commit. The installed skill is already called
-`kaiga`, so the committed code is the stale half, and a clone taken from one commit hash can be checked
-against it later. (Open question 3.)
+The clone was taken from that commit on 11 Oct 2026 (open question 3, answered), so it can be checked against
+it later.
 
 What the source contains:
 

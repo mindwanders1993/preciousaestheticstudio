@@ -4,14 +4,6 @@ Written 10 Oct 2026. Nothing is known yet about Precious Aesthetic Studio beyond
 about it is assumed in the other two documents. Each question below says what it changes and what the plan
 does until it is answered.
 
-## Before the clone — these block phase 1
-
-| # | Question | What it changes | Until answered |
-|---|---|---|---|
-| 1 | **Is Precious a second, separate studio, or Aura Blush under a new name?** | A rename is done inside the aurablush repository and keeps its history, its Vercel project and its work so far. A second studio is a clone. | A second studio — a clone |
-| 2 | **Does it start with Aura Blush's content, or only its code?** Same ten treatments, FAQs and page copy as a first draft to edit — or empty collections filled from scratch. | Whether phase 3 is editing or writing. Starting from the copy is faster and risks Aura Blush's wording surviving on a second studio's site. | The content is copied, and the check of checklist §9 guards the risk |
-| 3 | **Commit the `lets-scroll` → `kaiga` rename in aurablush first?** Five files there are changed and not committed. | Whether the clone can be traced to one commit. | Yes — commit there, then clone |
-
 ## About the studio — these block phase 3
 
 | # | Question | What it changes |
@@ -36,3 +28,15 @@ does until it is answered.
 
 *(Write each answer here with its date; move the row out of its table when the other documents have been
 updated to match.)*
+
+**1. A second, separate studio** (11 Oct 2026). Precious is its own studio with its own repository, history
+and deployment — instead of renaming Aura Blush inside its repository, because Aura Blush goes on as a studio
+of its own and the two must not share a deployment or a booking chat.
+
+**2. It starts with Aura Blush's content** (11 Oct 2026). The ten treatments, the FAQs and the page copy are
+copied as a first draft and edited in phase 3 — instead of empty collections written from scratch, because
+editing is faster and the grep of checklist §9 guards against the source's wording surviving.
+
+**3. The `lets-scroll` → `kaiga` rename is committed in aurablush first** (11 Oct 2026) — instead of cloning
+from a working tree with five uncommitted files, because a clone taken from one commit can be checked against
+it later.
