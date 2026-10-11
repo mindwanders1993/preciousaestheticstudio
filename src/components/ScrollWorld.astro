@@ -11,6 +11,7 @@
  * the encoded files into /world/vid/, uncomment, and nothing else changes.
  * See world/HANDOFF.md for the render spec.
  */
+import { site } from '../data/site';
 
 const scenes = [
   {
@@ -25,7 +26,7 @@ const scenes = [
     accent: '#d9868d',
     scroll: 1.6,
     linger: 0.45,
-    eyebrow: 'Aura Blush Studio',
+    eyebrow: site.legalName,
     title: 'Step inside.',
     body: 'A permanent-makeup and skin studio in Varanasi, built around one idea — you should look like yourself on your best morning, every morning.',
     tags: ['Sigra, Varanasi', '10 treatments'],
@@ -117,9 +118,9 @@ const scenes = [
 <div id="world" class="scroll-world"></div>
 
 <script is:inline src="/world/scrub-engine.js"></script>
-<script is:inline define:vars={{ scenes }}>
+<script is:inline define:vars={{ scenes, brandName: site.name.toUpperCase() }}>
   mountKaiga(document.getElementById('world'), {
-    brand: { name: 'AURA BLUSH', href: '/' },
+    brand: { name: brandName, href: '/' },
     cta: { label: 'Book Appointment', href: '/contact' },
     hint: 'scroll to step inside',
     diveScroll: 1.3,

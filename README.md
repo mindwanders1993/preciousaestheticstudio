@@ -1,7 +1,7 @@
 # Precious Aesthetic Studio — website
 
-**Status: phase 1 — cloned from Aura Blush, not yet rebranded.** The site still names Aura Blush everywhere;
-nothing here is deployed.
+**Status: phase 2 — renamed.** The site carries this studio's name and domain, read from `src/data/site.ts`.
+The city, the founder, the menu and the pictures are still Aura Blush's, and nothing here is deployed.
 
 This project is a full clone of the Aura Blush site (`~/Desktop/Projects/aurablush`), rebranded and
 re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudio.com`.
@@ -19,6 +19,7 @@ re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudi
 | [`docs/01-CLONE-PLAN.md`](docs/01-CLONE-PLAN.md) | What is copied and what is left behind, the phases in order, and how each is checked |
 | [`docs/02-REBRAND-CHECKLIST.md`](docs/02-REBRAND-CHECKLIST.md) | Every file and line in the source that names Aura Blush, its city or its founder |
 | [`docs/03-OPEN-QUESTIONS.md`](docs/03-OPEN-QUESTIONS.md) | What has to be answered about the studio, and what is assumed until it is |
+| [`docs/specs/`](docs/specs/) | One short spec per piece of work, approved before it is built |
 
 ## Skills
 
@@ -50,8 +51,8 @@ setting).
 
 ## Next step
 
-Phase 2 of the plan — the rename: the name, the domain and every hard-coded brand string, read from
-`src/data/site.ts`. Questions 4–8 in `docs/03-OPEN-QUESTIONS.md` block phase 3.
+Phase 3 of the plan — content: the studio's facts, the menu, the team, the FAQs and the place-specific copy.
+It cannot start until questions 4–8 in `docs/03-OPEN-QUESTIONS.md` are answered.
 
 ```bash
 npm ci

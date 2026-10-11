@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import TreatmentArt from '../../components/TreatmentArt.astro';
 import { getCategory } from '../../data/categories';
+import { site } from '../../data/site';
 
 export async function getStaticPaths() {
   const treatments = await getCollection('treatments');
@@ -34,7 +35,7 @@ const others = [...sameFamily, ...elsewhere].slice(0, 3);
 ---
 
 <Layout
-  title={`${d.title} | Aura Blush Studio`}
+  title={`${d.title} | ${site.legalName}`}
   description={d.description}
 >
   <section class="treatment-hero" data-cat={cat.id}>

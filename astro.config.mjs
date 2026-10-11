@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://aurablush.in',
+  site: 'https://preciousaestheticstudio.com',
   adapter: vercel(),
   integrations: [mdx(), sitemap()]
 });

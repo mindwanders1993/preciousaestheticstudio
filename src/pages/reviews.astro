@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { site } from '../data/site';
 
 const allReviews = (await getCollection('reviews'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -13,8 +14,8 @@ const dateFmt = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric
 ---
 
 <Layout
-  title="Client Reviews | Aura Blush Studio"
-  description="What Aura Blush Studio clients say — permanent makeup, skin and collagen courses, pigmentation protocols and laser."
+  title={`Client Reviews | ${site.legalName}`}
+  description={`What ${site.legalName} clients say — permanent makeup, skin and collagen courses, pigmentation protocols and laser.`}
 >
   <header class="page-header">
     <span class="page-header__eyebrow">Reviews</span>
@@ -33,7 +34,7 @@ const dateFmt = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric
         <div class="reviews-empty">
           <p class="reviews-empty__lead">No reviews yet.</p>
           <p>
-            Aura Blush is just opening. Rather than fill this page with testimonials
+            {site.name} is just opening. Rather than fill this page with testimonials
             we wrote ourselves — which plenty of studios do — it stays empty until
             real clients have something to say.
           </p>

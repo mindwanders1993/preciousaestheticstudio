@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 
 import { getCollection } from 'astro:content';
+import { site } from '../data/site';
 
 const treatments = await getCollection('treatments');
 
@@ -14,12 +15,12 @@ const stats = [
 ---
 
 <Layout
-  title="Our Story | Aura Blush Studio"
+  title={`Our Story | ${site.legalName}`}
   description="How a permanent-makeup studio in Varanasi became a skin and laser studio too — and the standards that had to come with it."
 >
   <header class="page-header">
     <span class="page-header__eyebrow">About Us</span>
-    <h1>The Aura Blush Story</h1>
+    <h1>The {site.name} Story</h1>
     <div class="page-header__rule"></div>
     <p class="page-header__lede">
       How a permanent-makeup studio in Varanasi became a skin and laser studio too — and the
@@ -31,13 +32,13 @@ const stats = [
     <div class="container">
       <div class="about-grid">
         <div class="about-image">
-          <img src="/images/studio.jpg" alt="Inside Aura Blush Studio" loading="lazy" />
+          <img src="/images/studio.jpg" alt={`Inside ${site.legalName}`} loading="lazy" />
         </div>
 
         <div class="about-content">
           <SectionHeading title="From pigment to skin" subtitle="Our Philosophy" alignment="left" />
           <p>
-            Aura Blush was founded in Sigra to close a gap this city had: high-end cosmetic
+            {site.name} was founded in Sigra to close a gap this city had: high-end cosmetic
             work you did not have to travel to Delhi or Lucknow for. Permanent makeup shouldn't
             look like a tattoo — it should look like makeup applied by someone who knows your
             face, that simply never washes off.

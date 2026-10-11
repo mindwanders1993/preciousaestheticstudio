@@ -13,7 +13,7 @@ them well is the website's job, not hers.
 1. Full name as she wants it published.
 2. What should the title say — "Founder & Artist", "Founder & PMU Artist",
    something else?
-3. Is "Aura Blush" the final studio name, or a working title?
+3. Is "Precious Aesthetic Studio" the final studio name, or a working title?
 
 ## 2. Training and certificates
 
