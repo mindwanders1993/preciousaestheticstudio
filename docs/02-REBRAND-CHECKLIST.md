@@ -94,16 +94,18 @@ Replace each with a value read from `site.ts`, not with the new name typed again
 
 ## 5. Pictures
 
-Thirteen files in `public/images/`.
+Two files in `public/images/` (12 Oct 2026): `artist.jpg` and `social-card.png`.
 
-- [ ] `hero.jpg`, `studio.jpg`, `artist.jpg` — the source's own identity. Replace all three.
+- [x] `hero.jpg`, `studio.jpg` — removed on 12 Oct 2026 with every generated treatment picture
+      (`docs/specs/P10-no-spa.md`). `artist.jpg` is Roshni's own.
+- [ ] `artist.jpg` — reshoot or edit as `PORTRAIT-BRIEF.md` describes.
 - [ ] Ten treatment pictures, one per slug, 1024×1024, from Pexels (free for commercial use). Legal to
       reuse; two studios showing the same ten pictures is the reason not to.
 - [ ] `public/favicon.ico`, `public/favicon.svg`
 - [ ] `IMAGE-BRIEF.md`, `PORTRAIT-BRIEF.md` — written for the source's pictures; re-brief.
 
-The flight borrows `hero.jpg`, `studio.jpg` and several treatment pictures as its stills
-(`src/components/ScrollWorld.astro`), so replacing them changes the homepage too.
+The flight runs on flat tinted stills in `public/world/stills/` (`src/components/ScrollWorld.astro`)
+until it is rendered.
 
 ## 6. The homepage flight
 

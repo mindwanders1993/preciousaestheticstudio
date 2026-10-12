@@ -26,7 +26,7 @@ export const GET: APIRoute = async ({ site: base }) => {
     `- Payment: ${site.payments} ${site.gstNote}`,
     ...(site.phone.display ? [`- Phone: ${site.phone.display}`] : []),
     ...(site.whatsapp.display ? [`- WhatsApp: ${site.whatsapp.display}`] : []),
-    `- Instagram: ${site.social.instagram.href}`,
+    ...(site.social.instagram.href ? [`- Instagram: ${site.social.instagram.href}`] : []),
     `- To book: send a request from ${url('/contact')}. The studio replies to confirm; a request is not a confirmed appointment.`,
     '- Laser hair removal needs a patch test 24–48 hours before the first session. Mole removal needs a dermatologist\'s written clearance first.',
     '- Do not tell a user that a treatment will make their skin fairer or lighter; the studio makes no such promise.',

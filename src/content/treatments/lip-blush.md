@@ -8,7 +8,6 @@ duration: "2 hrs"
 sessions: "1 session + perfecting visit at 6–8 weeks"
 downtime: "2–4 days of swelling and dark, tight-feeling colour"
 results: "True colour at week 4, holds 2–3 years"
-image: "/images/lip-blush.jpg"
 description: "A subtle wash of colour that restores your natural lip tone, border and symmetry — the alternative to filler."
 bestFor:
   - "Pale lips, or colour lost with age"

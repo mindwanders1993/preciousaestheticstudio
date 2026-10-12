@@ -17,10 +17,14 @@ const faqs = (await getCollection('faqs'))
 
 const message = messageLink();
 
+// The ways in that the site actually offers, in the order a visitor would pick them (rule 1: from site.ts).
+const live = [site.whatsapp.display && 'WhatsApp', site.social.instagram.handle && 'Instagram'].filter(Boolean);
+const channels = live.length ? `On ${live.join(' or ')}, or through the form` : 'Through the form on the contact page';
+
 const steps = [
   {
     title: 'You message us',
-    body: `On WhatsApp or Instagram, or through the form. Tell us what you are thinking about — brows, lips, skin, laser — and anything you are unsure of. We reply within 24 hours with an honest answer and a time for a consultation.`,
+    body: `${channels}. Tell us what you are thinking about — brows, lips, skin, laser — and anything you are unsure of. We reply within 24 hours with an honest answer and a time for a consultation.`,
   },
   {
     title: 'The consultation — free, about twenty minutes',
@@ -110,7 +114,7 @@ const jsonLd = [faqSchema(faqs)];
       <p class="text-muted">The consultation is free. There is nothing to decide today.</p>
       <div class="closing-actions">
         <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
-        <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
+        {message.external && <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>}
       </div>
     </div>
   </section>

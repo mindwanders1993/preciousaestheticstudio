@@ -32,6 +32,21 @@ Answers go at the bottom with their date.
 7. **About you.** Your training and certificates, years of experience, and the short story on the "Artist" and
    "About" pages — these were written for the earlier draft.
 
+## Three things that would help most (12 Oct 2026, after the design review)
+
+A. **Your WhatsApp number.** Every "Message" button on the site becomes a WhatsApp chat the moment it is in.
+B. **One photo of you in your room**, taken on a phone in daylight. It replaces the illustrated room on the
+   homepage. Customers book a person, not a room.
+C. **Your address and a landmark**, so the site can show directions.
+
+## Questions about the menu
+
+D. The names "Skin Whitening" and "Aura Whitening" are yours and stay if you want them. Some clients read
+   "whitening" as a warning sign; others search for exactly that word. Do you want to keep both names, or
+   call them "Brightening" / "Glow"? Either is fine; the site makes no promise of lighter skin in any case.
+E. For each treatment, in your own words, three answers a client asks first: what does it cost, does it
+   hurt, how many visits. These go on the treatment pages in Hindi and English.
+
 ## Please check the Hindi
 
 The homepage shows four short promises in Hindi under their English: *पहली सलाह मुफ़्त है · कीमत पहले बताई जाती है ·

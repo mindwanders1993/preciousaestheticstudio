@@ -8,12 +8,18 @@ whose licence has not been read.
 
 | File | What it shows | How it was made | Added |
 |---|---|---|---|
-| `skin-whitening.jpg` | A practitioner brushing a cream mask across a client's shoulders; the client's face is turned away | Generated: the Antigravity CLI's image generator (the CLI reports Google's Imagen 3), from the house style of `IMAGE-BRIEF.md` | 11 Oct 2026 |
-| `aura-whitening.jpg` | A gloved hand placing a drop of clear serum on a client's cheek | Generated, the same way | 11 Oct 2026 |
-| `vitiligo.jpg` | Gloved hands holding a hand with vitiligo patches, as at a consultation; no faces | Generated, the same way. Second attempt — the first drew a ring over a glove | 11 Oct 2026 |
 | `artist.jpg` | Roshni Verma | Her own photograph, with the setting and light edited as `PORTRAIT-BRIEF.md` describes; her face is not altered | carried from the earlier draft |
-| `hero.jpg`, `studio.jpg` | A treatment room; a corner with a mirror | Carried from the earlier draft. They match the prompts and house style of `IMAGE-BRIEF.md` and are taken to be generated from it — *to be confirmed by the developer* | carried from the earlier draft |
-| `microblading.jpg`, `lip-blush.jpg`, `microneedling.jpg`, `glass-skin.jpg`, `japanese-glow.jpg`, `under-eye.jpg`, `laser-hair-removal.jpg`, `mole-removal.jpg` | One treatment each, as its prompt in `IMAGE-BRIEF.md` describes | Carried from the earlier draft; taken to be generated from that brief — *to be confirmed by the developer*. (The earlier `AGENTS.md` said "sourced from Pexels"; the pictures do not look like that set.) | carried from the earlier draft |
+| `social-card.png` | The studio's name and city on a plain ground; the picture social networks show when a page is shared | Drawn by a script from the words in `src/data/site.ts`; no photograph in it | 12 Oct 2026 |
+| `/world/stills/*.jpg` (six, outside this folder) | A flat frame tinted to each scene of the `/studio` flight; nothing pictured | Drawn by a script; placeholders until the flight is rendered (`world/HANDOFF.md`) | 12 Oct 2026 |
+
+## Pictures removed on 12 Oct 2026
+
+Thirteen generated pictures — `hero.jpg`, `studio.jpg` and one for each of eleven treatments — were removed on
+the owner's instruction (`docs/specs/P10-no-spa.md`): every one of them, following the old house style of
+`IMAGE-BRIEF.md`, showed a spa (plaster walls, plants, brass, towels, treatment beds), and the owner does not
+want the site to feel like one. Each treatment page and card draws its family's motif instead
+(`TreatmentArt.astro`); the homepage and the About page draw the same art. The brief now asks for a clinical,
+precise look; new pictures are generated from it, and recorded here, one at a time.
 
 What follows from "generated":
 
@@ -21,8 +27,8 @@ What follows from "generated":
   made them. No real client appears in any of them.
 - **They illustrate a treatment. They are not Roshni's results** and are never captioned as such. The footer
   says so on every page. No picture shows a before and an after, or a change of skin tone (site rule 2).
-- `hero.jpg` and `studio.jpg` are not photographs of the real studio. They are replaced when there are real ones.
-- `PPET Treatment` has no picture, because what the treatment is, is not known. Its page shows the drawn motif.
+- No treatment has a picture at the moment; every page shows its family's drawn motif. A photograph of the real
+  room, when there is one, goes on the homepage and the About page first.
 
 ## Pictures that were turned down
 

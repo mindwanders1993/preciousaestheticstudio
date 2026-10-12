@@ -23,6 +23,7 @@ re-contented for Precious Aesthetic Studio and served at `preciousaestheticstudi
 | [`docs/02-REBRAND-CHECKLIST.md`](docs/02-REBRAND-CHECKLIST.md) | Every file and line in the source that names Aura Blush, its city or its founder |
 | [`docs/03-OPEN-QUESTIONS.md`](docs/03-OPEN-QUESTIONS.md) | What has to be answered about the studio, and what is assumed until it is |
 | [`docs/04-FOR-ROSHNI.md`](docs/04-FOR-ROSHNI.md) | What the owner is asked to confirm when she sees the preview |
+| [`docs/05-NEXT-STEPS.md`](docs/05-NEXT-STEPS.md) | The order of what comes next, who does it, and what each step unlocks |
 | [`docs/IMAGE-SOURCES.md`](docs/IMAGE-SOURCES.md) | Where every picture comes from, and the ones that were turned down |
 | [`docs/specs/`](docs/specs/) | One short spec per piece of work, approved before it is built |
 

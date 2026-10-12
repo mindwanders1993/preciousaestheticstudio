@@ -6,7 +6,6 @@ featured: true
 price: "₹25,000"
 priceNote: "Full body."
 duration: "15–60 min"
-image: "/images/laser-hair-removal.jpg"
 sessions: "8–10 sessions, 4–8 weeks apart"
 downtime: "A few hours of redness and follicular bumps"
 results: "Around 60% reduction by session three; 80–90% after a full course"

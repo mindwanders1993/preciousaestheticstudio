@@ -4,7 +4,6 @@ category: "clinical"
 order: 20
 price: "₹4,500"
 duration: "30 min"
-image: "/images/mole-removal.jpg"
 sessions: "1 session, after dermatology clearance"
 downtime: "A small scab for 7–10 days; pinkness fading over 4–8 weeks"
 results: "Final appearance settles at 3–6 months"

@@ -50,7 +50,8 @@ it later.
 - *Who runs it (5):* Roshni Verma, the owner. Her bio and portrait are carried over for now.
 - *The menu and prices (7):* twelve treatments under her names, with her prices — the table in the spec's §1.
   "Whitening" stays in two names, instead of Brightening or Glow, because they are the names she gave.
-- *Contact and bookings (8):* Instagram is the Aura Blush account for now. A Telegram bot and chat of this
+- *Contact and bookings (8):* The Aura Blush Instagram handle was removed on 12 Oct 2026; the site shows no
+  Instagram until the studio's own is filled in (`site.social.instagram`). A Telegram bot and chat of this
   studio's own are still to be created; WhatsApp, email and her real Instagram come later.
 - *Laser and mole removal (6):* not answered. Both stay on the menu with their screening wording, and the
   question goes to Roshni before the site is public.

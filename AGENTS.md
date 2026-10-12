@@ -61,7 +61,8 @@ in `docs/01-CLONE-PLAN.md` §8. `test/ci.test.js` fails if the pages and `robots
 **The homepage sells the first message** (12 Oct 2026, `docs/specs/P9-first-customer.md`): the offer (a free
 consultation), the prices, a trust strip with Hindi lines, how a first visit works, then the treatments. Every
 "message us" button comes from `src/lib/contact.ts`: WhatsApp with a prefilled text once `site.whatsapp` is
-filled in, Instagram until then. `/prices` and `/first-visit` exist to be shared as single links. "Reviews"
+filled in, Instagram once `site.social.instagram` is, and the form on `/contact` until either is. The Instagram
+handle the site opened with was the source site's and was removed on 12 Oct 2026. `/prices` and `/first-visit` exist to be shared as single links. "Reviews"
 is out of the navigation until there are real reviews.
 
 The homepage price list is `src/components/PriceList.astro`. The phone booking bar is in `Layout.astro`; a page
@@ -114,13 +115,17 @@ for category ids, labels, copy and colour.
   needs a patch test 24–48h ahead, and no pigmented lesion is removed without a
   dermatologist's written clearance, because radiofrequency destroys the tissue
   a pathologist would need. Don't soften that copy into marketing.
-- Eleven of the twelve treatments carry a picture in `public/images/<slug>.jpg`
-  (1024x1024), generated to the house style of `IMAGE-BRIEF.md`. Where each one
-  came from is recorded in `docs/IMAGE-SOURCES.md`, and a test fails if a picture
-  has no row there. They illustrate a treatment; none is captioned as the
-  studio's own result. `PPET Treatment` has none yet: `TreatmentArt.astro` remains
-  the fallback for any treatment without an `image`, drawing a per-family SVG
-  motif tinted from `--cat`.
+- **No treatment has a picture** (12 Oct 2026, `docs/specs/P10-no-spa.md`). The thirteen
+  generated pictures all showed a spa, and the owner wants no spa feel anywhere on the
+  site, so they were removed; `TreatmentArt.astro` draws a per-family SVG motif tinted
+  from `--cat` on every card and page, and on the homepage and About page too. A
+  picture goes back in as `public/images/<slug>.jpg` (1024x1024) with `image:` set in
+  the treatment's file, generated to the clinical house style now in `IMAGE-BRIEF.md`:
+  bright, precise, white and steel, the artist at work; no plants, towels, candles or
+  beds. Where each picture came from is recorded in `docs/IMAGE-SOURCES.md`, and a
+  test fails if a picture has no row there. None is captioned as the studio's own
+  result. The social picture is `public/images/social-card.png`, the name and city on
+  a plain ground.
 
 ## The camera flight (`/studio`)
 
@@ -135,9 +140,11 @@ for category ids, labels, copy and colour.
 - Leg **ids and order are load-bearing** — `world/leg_*.txt` and `world/HANDOFF.md`
   are keyed to them. Scene copy is safe to edit; the `brows` and `lips` legs must keep
   describing brow and lip suites, because that is what their render prompts specify.
-- The clips are not rendered yet; the flight runs on placeholder stills. Everything
-  needed to render and drop them in is in `world/HANDOFF.md` (prompts, spec table,
-  `bash world/encode.sh`).
+- The clips are not rendered yet; the flight runs on flat tinted placeholder stills in
+  `public/world/stills/`. Everything needed to render and drop them in is in
+  `world/HANDOFF.md` (prompts, spec table, `bash world/encode.sh`). The prompts were
+  re-styled on 12 Oct 2026 from a rose-plaster spa to a white, steel and glass clinic;
+  the room, the legs and the seam rule are unchanged.
 
 The flight must stay the first element on its page — the engine reads `window.scrollY`
 absolutely — and anything after it needs `position: relative; z-index: 30` over an opaque
