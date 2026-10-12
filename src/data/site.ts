@@ -43,7 +43,7 @@ export const site = {
    */
   phone: { display: '', href: '' },
   whatsapp: { display: '', href: '' },
-  /** PLACEHOLDER — no studio address yet. Instagram DM is the live channel. */
+  /** PLACEHOLDER — no studio email yet. The form on /contact is the live channel. */
   email: '',
 
   hours: [
@@ -51,8 +51,13 @@ export const site = {
     { days: 'Monday',           time: 'Closed' },
   ],
 
+  /**
+   * PLACEHOLDER — awaiting the studio's own account. The handle that was here belonged to the source
+   * site (docs/03-OPEN-QUESTIONS.md, question 8) and was removed on 12 Oct 2026. Everything that shows
+   * Instagram renders only when `handle` is filled in; set `handle` and `href` together.
+   */
   social: {
-    instagram: { handle: '@1leeja10', href: 'https://www.instagram.com/1leeja10' },
+    instagram: { handle: '', href: '' },
   },
 
   languages: 'Hindi, English, Bhojpuri',

@@ -108,9 +108,11 @@ const credentials = [
 
           <div class="artist-actions">
             <a href="/contact" class="btn-primary">Book with {artist.data.name.split(' ')[0]}</a>
-            <a href={site.social.instagram.href} class="btn-secondary" target="_blank" rel="noopener noreferrer">
-              {site.social.instagram.handle} on Instagram
-            </a>
+            {site.social.instagram.handle && (
+              <a href={site.social.instagram.href} class="btn-secondary" target="_blank" rel="noopener noreferrer">
+                {site.social.instagram.handle} on Instagram
+              </a>
+            )}
           </div>
         </div>
       </div>

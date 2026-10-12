@@ -4,7 +4,6 @@ category: "pigment"
 order: 30
 price: "₹15,000"
 duration: "Confirmed at consultation"
-image: "/images/skin-whitening.jpg"
 sessions: "Confirmed at consultation"
 downtime: "Confirmed at consultation"
 results: "Confirmed at consultation"

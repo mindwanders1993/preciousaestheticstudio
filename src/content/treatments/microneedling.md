@@ -5,7 +5,6 @@ order: 10
 featured: true
 price: "₹8,000"
 duration: "60–75 min"
-image: "/images/microneedling.jpg"
 sessions: "3–6 sessions, 4–6 weeks apart"
 downtime: "24–72 hrs of redness, like a mild sunburn"
 results: "Texture from week 4; full collagen remodelling at 3–6 months"

@@ -4,7 +4,6 @@ category: "pigment"
 order: 20
 price: "₹10,000"
 duration: "75 min"
-image: "/images/japanese-glow.jpg"
 sessions: "4 sessions, 3 weeks apart"
 downtime: "None. Occasional mild flush for an hour"
 results: "Visible brightening at 4–8 weeks; full effect around 3 months"

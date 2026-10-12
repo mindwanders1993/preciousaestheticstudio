@@ -198,7 +198,7 @@ const jsonLd = [
           <h2>Questions first?</h2>
           <p class="care-note">The consultation is free, and there's no obligation to book on the day.</p>
           <a href={bookHref} class="btn-outline">Book a free consultation</a>
-          <a href={message.href} class="care-box__alt" target="_blank" rel="noopener">{message.label} →</a>
+          {message.external && <a href={message.href} class="care-box__alt" target="_blank" rel="noopener">{message.label} →</a>}
         </div>
       </aside>
     </div>

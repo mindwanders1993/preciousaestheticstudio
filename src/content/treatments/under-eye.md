@@ -5,7 +5,6 @@ order: 50
 price: "₹5,000"
 priceNote: "Per sitting."
 duration: "45 min"
-image: "/images/under-eye.jpg"
 sessions: "3 sessions, 4 weeks apart"
 downtime: "None to 24 hrs, depending on which protocol you need"
 results: "Skin quality from week 3; pigment change over 2–3 months"

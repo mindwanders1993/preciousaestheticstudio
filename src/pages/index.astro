@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import TreatmentCard from '../components/TreatmentCard.astro';
 import PriceList from '../components/PriceList.astro';
+import TreatmentArt from '../components/TreatmentArt.astro';
 import { getCollection } from 'astro:content';
 import { categories } from '../data/categories';
 import { site } from '../data/site';
@@ -71,7 +72,7 @@ const standards = [
         </p>
         <div class="hero-actions">
           <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
-          <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
+          {message.external && <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>}
         </div>
         <ul class="hero-prices" aria-label="Three of our prices">
           {heroPrices.map(p => (
@@ -80,8 +81,10 @@ const standards = [
           <li><a href="/prices" class="hero-prices__all">All prices →</a></li>
         </ul>
       </div>
-      <div class="hero-image">
-        <img src="/images/hero.jpg" alt="A calm treatment room with a single bed by a window" width="1024" height="1024" fetchpriority="high" />
+      {/* No photograph here until there is a real one of the studio (docs/specs/P10-no-spa.md). The brow-stroke
+          motif is the same drawn art the treatment cards use, tinted from the permanent-makeup family colour. */}
+      <div class="hero-image" data-cat="pmu">
+        <TreatmentArt category="pmu" />
       </div>
     </div>
   </section>
@@ -186,7 +189,7 @@ const standards = [
       </p>
       <div class="closing-actions">
         <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
-        <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
+        {message.external && <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>}
       </div>
     </div>
   </section>
@@ -273,20 +276,16 @@ const standards = [
     border-style: dashed !important;
   }
 
-  .hero-image img {
-    display: block;
-    width: 100%;
-    height: auto;
+  .hero-image {
+    aspect-ratio: 4 / 3;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    overflow: hidden;
   }
 
-  /* On a phone the picture is decoration; the promise and the buttons come first. */
+  /* On a phone the art is decoration; the promise and the buttons come first. */
   @media (max-width: 899px) {
-    .hero-image { order: -1; }
-    .hero-image img { aspect-ratio: 16 / 10; }
+    .hero-image { order: -1; aspect-ratio: 16 / 7; }
   }
 
   .trust {

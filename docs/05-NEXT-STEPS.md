@@ -8,7 +8,7 @@ Verdict: 7/10 for getting a first message; the missing points are inputs only Ro
 | # | Step | Who | What it changes on the site |
 |---|---|---|---|
 | 1 | **Roshni's WhatsApp number** (`+91…`) into `src/data/site.ts` | Roshni → developer | Every "Message" button, the phone bar and each treatment page become a WhatsApp chat with the text already written. The biggest single lever. |
-| 2 | **One photo of Roshni in her real room** (phone-quality is fine) | Roshni | Goes on the homepage hero and the About page in place of the generated room. Customers book a person. |
+| 2 | **One photo of Roshni in her real room** (phone-quality is fine) | Roshni | Goes on the homepage hero and the About page in place of the drawn motif. Customers book a person. |
 | 3 | **Address, landmark, hours** | Roshni | Contact page, footer, structured data; a "Get directions" link to Google Maps. |
 | 4 | **Google Business Profile** (needs the phone number and address to verify) | Roshni or developer | "Microblading Varanasi" searches reach Maps before websites. Link it from the site's structured data. |
 | 5 | **Answers to the five "must" questions** (`docs/04-FOR-ROSHNI.md` §1) | Roshni | The four thin treatment pages get real content, or come off; the dermatologist wording is confirmed or the two treatments go. |
@@ -26,7 +26,7 @@ Verdict: 7/10 for getting a first message; the missing points are inputs only Ro
 
 ## Remaining weaknesses, for honesty
 
-In order: no real face or room on the site · Instagram as the only live channel · no address · copy still
+In order: no real face or room on the site · the contact form as the only live channel (the Instagram handle was the source site's, removed 12 Oct 2026) · no address · copy still
 long and formal in places · four placeholder treatment pages · the "Whitening" names (hers; a legal line is
 held) · no reviews (correct, but felt). Each is addressed by a row above.
 

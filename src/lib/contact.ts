@@ -5,8 +5,9 @@ import { site } from '../data/site';
  *
  * The one action the site exists for is a first message. In India that message is a WhatsApp, so the
  * moment `site.whatsapp` is filled in every "message us" button becomes a WhatsApp link with the text
- * already written. Until then the buttons lead to Instagram, which is the account the studio has today.
- * Nothing here is typed twice: the number and the handle live in `site.ts` (rule 1).
+ * already written. Until then the buttons lead to Instagram if the studio has an account on the site, and
+ * otherwise to the form on /contact. Nothing here is typed twice: the number and the handle live in
+ * `site.ts` (rule 1).
  */
 
 export const BOOK_LABEL = 'Book a free consultation';
@@ -21,10 +22,19 @@ export function whatsappLink(treatment?: string): string | null {
   return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
 }
 
-/** The best live channel for a message right now, with a label a button can show. */
-export function messageLink(treatment?: string): { label: string; href: string; channel: 'whatsapp' | 'instagram' } {
+export type MessageChannel = 'whatsapp' | 'instagram' | 'form';
+
+/**
+ * The best live channel for a message right now, with a label a button can show. `external` says whether
+ * the link leaves the site. When the channel is the form, the link is the same page the booking button
+ * already leads to, so a page with a booking button next to it can leave the message button out.
+ */
+export function messageLink(treatment?: string): { label: string; href: string; channel: MessageChannel; external: boolean } {
   const wa = whatsappLink(treatment);
-  return wa
-    ? { label: 'Message on WhatsApp', href: wa, channel: 'whatsapp' }
-    : { label: 'Message on Instagram', href: site.social.instagram.href, channel: 'instagram' };
+  if (wa) return { label: 'Message on WhatsApp', href: wa, channel: 'whatsapp', external: true };
+  if (site.social.instagram.href) {
+    return { label: 'Message on Instagram', href: site.social.instagram.href, channel: 'instagram', external: true };
+  }
+  const q = treatment ? `?treatment=${encodeURIComponent(treatment)}` : '';
+  return { label: 'Send us a message', href: `/contact${q}`, channel: 'form', external: false };
 }

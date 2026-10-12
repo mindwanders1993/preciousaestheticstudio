@@ -5,7 +5,6 @@ order: 30
 featured: true
 price: "₹20,000"
 duration: "90 min"
-image: "/images/glass-skin.jpg"
 sessions: "Standalone, or monthly to hold the result"
 downtime: "None. Occasional mild flush for an hour or two"
 results: "Visible the same day; compounding over 2–4 weeks with a course"

@@ -28,7 +28,7 @@ const message = messageLink();
       <p class="note text-muted">{site.gstNote}</p>
       <div class="actions">
         <a href="/contact" class="btn-primary">{BOOK_LABEL}</a>
-        <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>
+        {message.external && <a href={message.href} class="btn-secondary" target="_blank" rel="noopener">{message.label}</a>}
       </div>
     </div>
   </section>

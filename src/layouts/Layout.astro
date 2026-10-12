@@ -27,7 +27,7 @@ const {
   title = `${site.legalName} | Permanent Makeup, Skin & Laser in ${site.city}`,
   description = "Permanent makeup, microneedling and Korean glass skin, tone and pigment treatments, laser hair removal and mole removal — in Sigra, Varanasi.",
   immersive = false,
-  image = '/images/hero.jpg',
+  image = '/images/social-card.png',
   jsonLd = [],
   bookHref = '/contact',
 } = Astro.props;
@@ -56,7 +56,7 @@ const structuredData = [salonSchema(Astro.site), ...jsonLd];
 // page itself.
 const showBookBar = !immersive && !path.startsWith('/contact');
 const message = messageLink();
-const messageShort = message.channel === 'whatsapp' ? 'WhatsApp' : 'Instagram';
+const messageShort = { whatsapp: 'WhatsApp', instagram: 'Instagram', form: 'Message' }[message.channel];
 
 /**
  * Category colours are emitted here, once, from src/data/categories.ts so the
@@ -203,15 +203,20 @@ const categoryTokens = [
           <p class="text-muted">
             {site.phone.display && <><a href={site.phone.href}>{site.phone.display}</a><br /></>}
             {site.email && <><a href={`mailto:${site.email}`}>{site.email}</a><br /></>}
-            <a href={site.social.instagram.href} class="footer-ig" target="_blank" rel="noopener noreferrer">
-              <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"
-                      fill="none" stroke="currentColor" stroke-width="1.8" />
-                <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
-                <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
-              </svg>
-              {site.social.instagram.handle}
-            </a>
+            {site.social.instagram.handle && (
+              <a href={site.social.instagram.href} class="footer-ig" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"
+                        fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
+                </svg>
+                {site.social.instagram.handle}
+              </a>
+            )}
+            {!site.social.instagram.handle && !site.phone.display && !site.email && (
+              <a href="/contact">Send us a message</a>
+            )}
           </p>
         </div>
       </div>
@@ -229,7 +234,9 @@ const categoryTokens = [
     {showBookBar && (
       <div class="book-bar">
         <a href={bookHref} class="book-bar__primary">{BOOK_LABEL}</a>
-        <a href={message.href} class="book-bar__secondary" target="_blank" rel="noopener" aria-label={message.label}>{messageShort}</a>
+        {message.external && (
+          <a href={message.href} class="book-bar__secondary" target="_blank" rel="noopener" aria-label={message.label}>{messageShort}</a>
+        )}
       </div>
     )}
 

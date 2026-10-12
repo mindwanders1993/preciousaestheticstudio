@@ -7,7 +7,8 @@
  * frame-identical and the camera never reverses.
  *
  * Until the clips are rendered, the `clip` / `clipMobile` / `stillMobile` keys
- * below stay commented and the engine simply cross-dissolves the stills. Drop
+ * below stay commented and the engine simply cross-dissolves the stills — flat
+ * tinted frames in /world/stills/, nothing pictured, until the renders land. Drop
  * the encoded files into /world/vid/, uncomment, and nothing else changes.
  * See world/HANDOFF.md for the render spec.
  */
@@ -25,7 +26,7 @@ const scenes = [
   {
     id: 'arrival',
     label: 'Arrival',
-    still: '/images/hero.jpg',
+    still: '/world/stills/arrival.jpg',  // flat placeholder, tinted to the scene (docs/specs/P10-no-spa.md)
     // Real assets (see world/HANDOFF.md) — swap these in when the renders land:
     // still: '/world/arrival.jpg',
     // clip: '/world/vid/arrival.mp4',
@@ -42,7 +43,7 @@ const scenes = [
   {
     id: 'consult',
     label: 'The Consultation',
-    still: '/images/microneedling.jpg',
+    still: '/world/stills/consult.jpg',  // flat placeholder, tinted to the scene (docs/specs/P10-no-spa.md)
     // Real assets (see world/HANDOFF.md) — swap these in when the renders land:
     // still: '/world/consult.jpg',
     // clip: '/world/vid/consult.mp4',
@@ -57,7 +58,7 @@ const scenes = [
   {
     id: 'prep',
     label: 'Sterile Prep',
-    still: '/images/studio.jpg',
+    still: '/world/stills/prep.jpg',  // flat placeholder, tinted to the scene (docs/specs/P10-no-spa.md)
     // Real assets (see world/HANDOFF.md) — swap these in when the renders land:
     // still: '/world/prep.jpg',
     // clip: '/world/vid/prep.mp4',
@@ -72,7 +73,7 @@ const scenes = [
   {
     id: 'brows',
     label: 'The Brow Suite',
-    still: '/images/microblading.jpg',
+    still: '/world/stills/brows.jpg',  // flat placeholder, tinted to the scene (docs/specs/P10-no-spa.md)
     // Real assets (see world/HANDOFF.md) — swap these in when the renders land:
     // still: '/world/brows.jpg',
     // clip: '/world/vid/brows.mp4',
@@ -87,7 +88,7 @@ const scenes = [
   {
     id: 'lips',
     label: 'The Lip Suite',
-    still: '/images/lip-blush.jpg',
+    still: '/world/stills/lips.jpg',  // flat placeholder, tinted to the scene (docs/specs/P10-no-spa.md)
     // Real assets (see world/HANDOFF.md) — swap these in when the renders land:
     // still: '/world/lips.jpg',
     // clip: '/world/vid/lips.mp4',
@@ -102,7 +103,7 @@ const scenes = [
   {
     id: 'reveal',
     label: 'The Reveal',
-    still: '/images/studio.jpg',
+    still: '/world/stills/reveal.jpg',  // flat placeholder, tinted to the scene (docs/specs/P10-no-spa.md)
     // Real assets (see world/HANDOFF.md) — swap these in when the renders land:
     // still: '/world/reveal.jpg',
     // clip: '/world/vid/reveal.mp4',

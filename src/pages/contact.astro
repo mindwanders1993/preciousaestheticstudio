@@ -56,7 +56,7 @@ const hours = site.hours;
               ? <p class="landmark text-muted">{site.address.landmark}</p>
               : <p class="landmark address-pending">
                   We're in Sigra, central Varanasi. Full street address and the
-                  nearest landmark to follow — message us on Instagram in the
+                  nearest landmark to follow — send us a message in the
                   meantime and we'll guide you in.
                 </p>}
           </div>
@@ -71,22 +71,26 @@ const hours = site.hours;
               </p>
             )}
 
-            <a href={site.social.instagram.href} class="ig-link" target="_blank" rel="noopener noreferrer">
-              <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"
-                      fill="none" stroke="currentColor" stroke-width="1.8" />
-                <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
-                <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
-              </svg>
-              <span>
-                <strong>{site.social.instagram.handle}</strong>
-                <em>Message us on Instagram</em>
-              </span>
-            </a>
+            {site.social.instagram.handle && (
+              <a href={site.social.instagram.href} class="ig-link" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"
+                        fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
+                </svg>
+                <span>
+                  <strong>{site.social.instagram.handle}</strong>
+                  <em>Message us on Instagram</em>
+                </span>
+              </a>
+            )}
             <p class="landmark text-muted">
               {site.whatsapp.display
                 ? <>WhatsApp is the fastest way to reach us and the one we answer soonest.</>
-                : <>A direct line is coming soon. Until then, an Instagram DM or the form below is the way to reach us — both go straight to Roshni.</>}
+                : site.social.instagram.handle
+                  ? <>A direct line is coming soon. Until then, an Instagram DM or the form below is the way to reach us — both go straight to Roshni.</>
+                  : <>A direct line is coming soon. Until then, the form below is the way to reach us — it goes straight to Roshni.</>}
             </p>
           </div>
 
@@ -240,14 +244,14 @@ const hours = site.hours;
           const name = payload.name;
           say(
             'Thanks' + (name ? ', ' + name.split(' ')[0] : '') +
-            ' \u2014 your booking request is in! We\u2019ll be in touch on Instagram/WhatsApp within 24 hours.',
+            ' \u2014 your booking request is in! We\u2019ll be in touch within 24 hours.',
             'success'
           );
           form.reset();
         } catch (err) {
           say(
             (err && err.message) ||
-            'Something went wrong sending that. Please try again, or message us on Instagram.',
+            'Something went wrong sending that. Please try again in a moment.',
             'error'
           );
         } finally {
@@ -388,8 +392,8 @@ const hours = site.hours;
     padding-left: 0.85rem;
   }
 
-  /* Instagram is currently the only live contact channel, so it gets a real
-     target rather than a text link sitting among absent ones. */
+  /* When the studio has an Instagram account it gets a real target rather
+     than a text link sitting among absent ones. */
   .ig-link {
     display: inline-flex;
     align-items: center;

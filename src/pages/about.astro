@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import TreatmentArt from '../components/TreatmentArt.astro';
 
 import { getCollection } from 'astro:content';
 import { site } from '../data/site';
@@ -31,8 +32,9 @@ const stats = [
   <section class="section">
     <div class="container">
       <div class="about-grid">
-        <div class="about-image">
-          <img src="/images/studio.jpg" alt="A calm treatment room with a single bed by a window" loading="lazy" />
+        {/* Drawn art until there is a photograph of the real room (docs/specs/P10-no-spa.md). */}
+        <div class="about-image" data-cat="skin">
+          <TreatmentArt category="skin" />
         </div>
 
         <div class="about-content">
@@ -112,11 +114,8 @@ const stats = [
     box-shadow: var(--shadow-card);
   }
 
-  .about-image img {
-    display: block;
-    width: 100%;
+  .about-image {
     height: clamp(320px, 45vw, 520px);
-    object-fit: cover;
   }
 
   .about-content p {

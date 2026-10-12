@@ -27,7 +27,7 @@ export function salonSchema(base: URL | undefined) {
     '@id': salonId(base),
     name: site.legalName,
     url: absolute('/', base),
-    image: absolute('/images/hero.jpg', base),
+    image: absolute('/images/social-card.png', base),
     address: {
       '@type': 'PostalAddress',
       ...(site.address.line1 ? { streetAddress: site.address.line1 } : {}),
