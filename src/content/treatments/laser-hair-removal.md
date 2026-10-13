@@ -9,6 +9,7 @@ duration: "15–60 min"
 sessions: "8–10 sessions, 4–8 weeks apart"
 downtime: "A few hours of redness and follicular bumps"
 results: "Around 60% reduction by session three; 80–90% after a full course"
+image: "/images/laser-hair-removal-2.jpg"
 description: "Nd:YAG and diode hair reduction built for Indian skin tones — with a compulsory patch test before we treat."
 bestFor:
   - "Dark hair on Indian and South Asian skin — the tones we treat most"

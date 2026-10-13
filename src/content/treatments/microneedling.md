@@ -8,6 +8,7 @@ duration: "60–75 min"
 sessions: "3–6 sessions, 4–6 weeks apart"
 downtime: "24–72 hrs of redness, like a mild sunburn"
 results: "Texture from week 4; full collagen remodelling at 3–6 months"
+image: "/images/microneedling-2.jpg"
 description: "Controlled micro-injury that triggers your own collagen and elastin to rebuild — for scarring, pores and fine lines."
 bestFor:
   - "Rolling and boxcar acne scarring"

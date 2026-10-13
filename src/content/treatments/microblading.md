@@ -8,6 +8,7 @@ duration: "2 hrs"
 sessions: "1 session + perfecting visit at 6–8 weeks"
 downtime: "None cosmetically. 7–10 days of flaking you can work through"
 results: "Settles by week 4, holds 12–18 months before a refresh"
+image: "/images/microblading-2.jpg"
 description: "Define and shape with hyper-realistic hair strokes for perfectly full and natural-looking eyebrows."
 bestFor:
   - "Sparse, over-plucked or patchy brows"

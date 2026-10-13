@@ -8,6 +8,7 @@ duration: "90 min"
 sessions: "Standalone, or monthly to hold the result"
 downtime: "None. Occasional mild flush for an hour or two"
 results: "Visible the same day; compounding over 2–4 weeks with a course"
+image: "/images/glass-skin-2.jpg"
 description: "The full ten-step Korean protocol — double cleanse, gentle exfoliation, layered hydration infusion and a sealing mask."
 bestFor:
   - "Dull, dehydrated or tight-feeling skin"

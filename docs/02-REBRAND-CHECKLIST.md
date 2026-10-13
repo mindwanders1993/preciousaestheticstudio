@@ -94,13 +94,15 @@ Replace each with a value read from `site.ts`, not with the new name typed again
 
 ## 5. Pictures
 
-Two files in `public/images/` (12 Oct 2026): `artist.jpg` and `social-card.png`.
+In `public/images/` (13 Oct 2026): `artist.jpg`, `social-card.png` and seven treatment pictures named
+`<slug>-2.jpg`.
 
 - [x] `hero.jpg`, `studio.jpg` — removed on 12 Oct 2026 with every generated treatment picture
       (`docs/specs/P10-no-spa.md`). `artist.jpg` is Roshni's own.
 - [ ] `artist.jpg` — reshoot or edit as `PORTRAIT-BRIEF.md` describes.
-- [ ] Ten treatment pictures, one per slug, 1024×1024, from Pexels (free for commercial use). Legal to
-      reuse; two studios showing the same ten pictures is the reason not to.
+- [ ] Eleven treatment pictures, one per slug but PPET, 1024×1024, generated to the clinical brief
+      (`docs/specs/P11-clinical-pictures.md`). Seven are in (13 Oct 2026); lip blush, skin whitening, aura
+      whitening and vitiligo are still to generate.
 - [ ] `public/favicon.ico`, `public/favicon.svg`
 - [ ] `IMAGE-BRIEF.md`, `PORTRAIT-BRIEF.md` — written for the source's pictures; re-brief.
 

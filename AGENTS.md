@@ -115,17 +115,21 @@ for category ids, labels, copy and colour.
   needs a patch test 24–48h ahead, and no pigmented lesion is removed without a
   dermatologist's written clearance, because radiofrequency destroys the tissue
   a pathologist would need. Don't soften that copy into marketing.
-- **No treatment has a picture** (12 Oct 2026, `docs/specs/P10-no-spa.md`). The thirteen
-  generated pictures all showed a spa, and the owner wants no spa feel anywhere on the
-  site, so they were removed; `TreatmentArt.astro` draws a per-family SVG motif tinted
-  from `--cat` on every card and page, and on the homepage and About page too. A
-  picture goes back in as `public/images/<slug>.jpg` (1024x1024) with `image:` set in
-  the treatment's file, generated to the clinical house style now in `IMAGE-BRIEF.md`:
-  bright, precise, white and steel, the artist at work; no plants, towels, candles or
-  beds. Where each picture came from is recorded in `docs/IMAGE-SOURCES.md`, and a
-  test fails if a picture has no row there. None is captioned as the studio's own
-  result. The social picture is `public/images/social-card.png`, the name and city on
-  a plain ground.
+- **Treatment pictures show a clinic at work, never a spa** (13 Oct 2026,
+  `docs/specs/P11-clinical-pictures.md`). The first thirteen generated pictures all
+  showed a spa and were removed on 12 Oct (`docs/specs/P10-no-spa.md`). A treatment gets
+  a new one once it has been generated from `IMAGE-BRIEF.md` and looked at: bright,
+  precise, white and steel, gloved hands at work; no plants, towels, candles or beds,
+  and never the practitioner's face. Seven have one; lip blush, skin whitening, aura
+  whitening and vitiligo are still to come. A treatment without a picture draws its
+  family's SVG motif (`TreatmentArt.astro`, tinted from `--cat`), as PPET does, and as
+  the homepage and About page do until there is a photograph of the real room. Files
+  are `public/images/<slug>-2.jpg` (1024x1024) with `image:` set in the treatment's
+  file; `/images/*` is cached for a year, so a replaced picture takes a new name and
+  `<slug>.jpg` is not used again. Where each picture came from is recorded in
+  `docs/IMAGE-SOURCES.md`, and a test fails if a picture has no row there. None is
+  captioned as the studio's own result. The social picture is
+  `public/images/social-card.png`, the name and city on a plain ground.
 
 ## The camera flight (`/studio`)
 

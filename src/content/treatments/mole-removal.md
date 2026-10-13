@@ -7,6 +7,7 @@ duration: "30 min"
 sessions: "1 session, after dermatology clearance"
 downtime: "A small scab for 7–10 days; pinkness fading over 4–8 weeks"
 results: "Final appearance settles at 3–6 months"
+image: "/images/mole-removal-2.jpg"
 description: "Radiofrequency removal of benign raised moles and skin tags — performed only after a dermatologist has cleared the lesion."
 bestFor:
   - "Raised moles catching on clothing, razors or jewellery"
