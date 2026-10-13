@@ -8,6 +8,7 @@ duration: "45 min"
 sessions: "3 sessions, 4 weeks apart"
 downtime: "None to 24 hrs, depending on which protocol you need"
 results: "Skin quality from week 3; pigment change over 2–3 months"
+image: "/images/under-eye-2.jpg"
 description: "Dark circles are four different problems wearing the same face. We work out which one is yours before treating it."
 bestFor:
   - "Pigmented circles — brown, and unchanged when you press the skin"

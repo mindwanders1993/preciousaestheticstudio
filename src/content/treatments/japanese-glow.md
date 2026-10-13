@@ -7,6 +7,7 @@ duration: "75 min"
 sessions: "4 sessions, 3 weeks apart"
 downtime: "None. Occasional mild flush for an hour"
 results: "Visible brightening at 4–8 weeks; full effect around 3 months"
+image: "/images/japanese-glow-2.jpg"
 description: "Clarity and even tone — tranexamic acid, vitamin C and stabilised actives, layered gently over months."
 bestFor:
   - "Dull, uneven tone with no single obvious cause"
